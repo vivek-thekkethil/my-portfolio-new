@@ -88,6 +88,9 @@
 	
 
 	var carousel = function() {
+		// On mobile, touchDrag is disabled so Owl's non-passive touchstart listener
+		// does not block native vertical page scrolling. Autoplay still works.
+		var isMobile = $(window).width() < 992;
 		$('.home-slider').owlCarousel({
 	    loop:true,
 	    autoplay: true,
@@ -96,6 +99,8 @@
 	    animateIn: 'fadeIn',
 	    nav:false,
 	    autoplayHoverPause: false,
+	    touchDrag: !isMobile,
+	    mouseDrag: true,
 	    items: 1,
 	    navText : ["<span class='ion-md-arrow-back'></span>","<span class='ion-chevron-right'></span>"],
 	    responsive:{
@@ -112,6 +117,16 @@
 		});
 	};
 	carousel();
+
+	// Ensure hero section and its children never block native vertical scroll.
+	// Runs after Owl has rendered its dynamic DOM (.owl-stage, .owl-item etc.)
+	setTimeout(function() {
+		document.querySelectorAll(
+			'#home-section, .home-slider, .owl-stage-outer, .owl-stage, .owl-item, .slider-item, .overlay, .one-third, .one-forth'
+		).forEach(function(el) {
+			el.style.touchAction = 'pan-y';
+		});
+	}, 300);
 
 	$('nav .dropdown').hover(function(){
 		var $this = $(this);
