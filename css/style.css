@@ -8448,7 +8448,8 @@ h1, h2, h3, h4, h5,
         left: 0;
         right: 0;
         background: #000000;
-        opacity: 0; }
+        opacity: 0;
+        pointer-events: none; }
       .owl-carousel.home-slider .slider-item .slider-text {
         height: 750px;
         z-index: 0; }
@@ -9682,3 +9683,23 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+/* ---- Mobile hero scroll fix ---- */
+/* Owl Carousel sets touch-action:none on .owl-drag .owl-item which blocks
+   vertical page scrolling on mobile. Override to pan-y so vertical swipes
+   still scroll the page while horizontal swipes work the carousel. */
+.owl-carousel.owl-drag .owl-item {
+  -ms-touch-action: pan-y !important;
+  touch-action: pan-y !important;
+}
+
+#home-section,
+.owl-carousel.home-slider,
+.owl-carousel.home-slider .owl-stage-outer,
+.owl-carousel.home-slider .owl-stage,
+.owl-carousel.home-slider .slider-item,
+.owl-carousel.home-slider .slider-item .slider-text,
+.owl-carousel.home-slider .slider-item .slider-text .one-forth {
+  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+}
