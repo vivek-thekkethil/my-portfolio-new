@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/flaticon.css" />
     <link rel="stylesheet" href="css/icomoon.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations-rich.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -85,6 +86,24 @@
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <!-- ===== PRELOADER ===== -->
+    <div id="ftco-preloader">
+      <div class="preloader-inner">
+        <div class="preloader-logo">
+          <span class="logo-initial">V</span>
+          <svg class="preloader-ring" viewBox="0 0 120 120">
+            <circle class="ring-track" cx="60" cy="60" r="52"/>
+            <circle class="ring-fill"  cx="60" cy="60" r="52"/>
+          </svg>
+        </div>
+        <p class="preloader-name">Vivek Krishnan</p>
+        <p class="preloader-subtitle">Full Stack Developer</p>
+        <div class="preloader-bar"><span class="preloader-bar-fill"></span></div>
+      </div>
+    </div>
+    <!-- ===== /PRELOADER ===== -->
+
     <nav
       class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target"
       id="ftco-navbar"
@@ -217,7 +236,7 @@
     <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
       <div class="container">
         <div class="row d-flex">
-          <div class="col-md-6 col-lg-5 d-flex">
+          <div class="col-md-6 col-lg-5 d-flex" data-aos="fade-right" data-aos-delay="0">
             <div class="img-about img d-flex align-items-stretch">
               <div class="overlay"></div>
               <div
@@ -226,7 +245,7 @@
               ></div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
+          <div class="col-md-6 col-lg-7 pl-lg-5 pb-5" data-aos="fade-left" data-aos-delay="100">
             <div class="row justify-content-start pb-3">
               <div class="col-md-12 heading-section ftco-animate">
                 <h1 class="big">About</h1>
@@ -372,7 +391,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 text-center d-flex ftco-animate">
+          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
             <a href="#" class="services-1">
               <span class="icon">
                 <i class="flaticon-analysis"></i>
@@ -386,7 +405,7 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 text-center d-flex ftco-animate">
+          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="120">
             <a href="#" class="services-1">
               <span class="icon">
                 <i class="flaticon-ideas"></i>
@@ -400,7 +419,7 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 text-center d-flex ftco-animate">
+          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="240">
             <a href="#" class="services-1">
               <span class="icon">
                 <i class="flaticon-flasks"></i>
@@ -415,7 +434,7 @@
             </a>
           </div>
 
-          <div class="col-md-4 text-center d-flex ftco-animate">
+          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="60">
             <a href="#" class="services-1">
               <span class="icon">
                 <i class="flaticon-analysis"></i>
@@ -429,7 +448,7 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 text-center d-flex ftco-animate">
+          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="180">
             <a href="#" class="services-1">
               <span class="icon">
                 <i class="flaticon-ideas"></i>
@@ -443,7 +462,7 @@
               </div>
             </a>
           </div>
-          <div class="col-md-4 text-center d-flex ftco-animate">
+          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
             <a href="#" class="services-1">
               <span class="icon">
                 <i class="flaticon-flasks"></i>
@@ -963,7 +982,7 @@
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
+          <div class="col-md-4 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
             <div class="blog-entry justify-content-end">
               <a
                 href="#"
@@ -992,7 +1011,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate">
+          <div class="col-md-4 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="150">
             <div class="blog-entry justify-content-end">
               <a
                 href="#"
@@ -1021,7 +1040,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate">
+          <div class="col-md-4 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
             <div class="blog-entry">
               <a
                 href="#"
@@ -1062,6 +1081,7 @@
         <div class="row d-md-flex align-items-center">
           <div
             class="col-md d-flex justify-content-center counter-wrap ftco-animate"
+          data-aos="zoom-in" data-aos-delay="0"
           >
             <div class="block-18">
               <div class="text">
@@ -1072,6 +1092,7 @@
           </div>
           <div
             class="col-md d-flex justify-content-center counter-wrap ftco-animate"
+          data-aos="zoom-in" data-aos-delay="100"
           >
             <div class="block-18">
               <div class="text">
@@ -1082,6 +1103,7 @@
           </div>
           <div
             class="col-md d-flex justify-content-center counter-wrap ftco-animate"
+          data-aos="zoom-in" data-aos-delay="200"
           >
             <div class="block-18">
               <div class="text">
@@ -1092,6 +1114,7 @@
           </div>
           <div
             class="col-md d-flex justify-content-center counter-wrap ftco-animate"
+          data-aos="zoom-in" data-aos-delay="300"
           >
             <div class="block-18">
               <div class="text">
@@ -1110,7 +1133,7 @@
     >
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-7 ftco-animate text-center">
+          <div class="col-md-7 ftco-animate text-center" data-aos="zoom-in" data-aos-delay="0">
             <h2>I'm <span>Available</span> for freelancing</h2>
             <p>
               A small river named Duden flows by their place and supplies it
@@ -1141,7 +1164,7 @@
         </div>
 
         <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
             <div class="align-self-stretch box p-4 text-center">
               <div
                 class="icon d-flex align-items-center justify-content-center"
@@ -1152,7 +1175,7 @@
               <p>Dubai, United Arab Emirates</p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="100">
             <div class="align-self-stretch box p-4 text-center">
               <div
                 class="icon d-flex align-items-center justify-content-center"
@@ -1163,7 +1186,7 @@
               <p><a href="tel://1234567920">+971-547481288</a></p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="200">
             <div class="align-self-stretch box p-4 text-center">
               <div
                 class="icon d-flex align-items-center justify-content-center"
@@ -1174,7 +1197,7 @@
               <p><a href="mailto:viveknair97k@gmail.com">viveknair97k@gmail.com</a></p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
             <div class="align-self-stretch box p-4 text-center">
               <div
                 class="icon d-flex align-items-center justify-content-center"
@@ -1425,7 +1448,7 @@
     <script src="js/aos.js"></script>
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/scrollax.min.js"></script>
-
     <script src="js/main.js"></script>
+    <script src="js/animations-rich.js"></script>
   </body>
 </html>

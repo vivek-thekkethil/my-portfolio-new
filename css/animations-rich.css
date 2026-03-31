@@ -1,0 +1,636 @@
+/* ==============================================
+   RICH ANIMATIONS — Portfolio Enhancement
+   ============================================== */
+
+/* ----- Custom Cursor ----- */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #ffbd39;
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s, height 0.25s, background 0.25s, transform 0.25s;
+  will-change: left, top;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(255, 189, 57, 0.55);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  will-change: left, top;
+}
+@media (max-width: 991.98px) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+
+/* ----- Hero Text Entrance ----- */
+.slider-text .text {
+  animation: heroEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.6s;
+}
+@keyframes heroEntrance {
+  from { opacity: 0; transform: translateX(-55px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ----- Hero Name Shimmer Text ----- */
+.owl-carousel .slider-text h1 span {
+  background: linear-gradient(120deg, #ffbd39, #ff7043, #ffd700, #ffbd39);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 4s linear infinite;
+  display: inline;
+}
+@keyframes textShimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+
+/* ----- Hero Subheading Slide-Line ----- */
+.slider-text .subheading {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+.slider-text .subheading::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: -100%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #ffbd39, transparent);
+  animation: slideLine 2.4s ease-in-out infinite;
+}
+@keyframes slideLine {
+  0%   { left: -100%; }
+  50%  { left: 0; }
+  100% { left: 100%; }
+}
+
+/* ----- Profile / Hero Image Float ----- */
+.one-third.img,
+.img-about .img {
+  animation: floatY 6.5s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-16px); }
+}
+
+/* ----- Typewriter Cursor ----- */
+.typed-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: #ffbd39;
+  margin-left: 5px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+  border-radius: 1px;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ----- Scroll Indicator Arrows ----- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+}
+.scroll-indicator span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-right: 2px solid #ffbd39;
+  border-bottom: 2px solid #ffbd39;
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: scrollArrow 1.8s ease-in-out infinite;
+}
+.scroll-indicator span:nth-child(1) { animation-delay: 0s; }
+.scroll-indicator span:nth-child(2) { animation-delay: 0.18s; }
+.scroll-indicator span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes scrollArrow {
+  0%   { opacity: 0; transform: rotate(45deg) translate(-4px, -4px); }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: rotate(45deg) translate(4px, 4px); }
+}
+
+/* ----- Section Top Divider Shimmer ----- */
+.ftco-section {
+  position: relative;
+}
+.ftco-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 189, 57, 0.35), transparent);
+  background-size: 250%;
+  animation: sectionLine 5s ease-in-out infinite;
+}
+@keyframes sectionLine {
+  0%   { background-position: -250% 0; }
+  100% { background-position: 250% 0; }
+}
+
+/* ----- Section Heading Underline Reveal ----- */
+.heading-section h2 {
+  position: relative;
+  display: inline-block;
+}
+.heading-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; left: 0;
+  width: 0; height: 3px;
+  background: linear-gradient(90deg, #ffbd39, #ff7043);
+  border-radius: 2px;
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+.heading-section.heading-animated h2::after {
+  width: 60%;
+}
+.heading-section.text-center h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ----- Navbar Brand Glow on Hover ----- */
+.navbar-brand {
+  transition: text-shadow 0.35s ease !important;
+}
+.navbar-brand:hover {
+  text-shadow: 0 0 16px rgba(255, 189, 57, 0.85), 0 0 32px rgba(255, 189, 57, 0.4) !important;
+}
+
+/* ----- Navbar Staggered Entrance ----- */
+.navbar-nav .nav-item {
+  animation: navFadeIn 0.55s ease both;
+}
+.navbar-nav .nav-item:nth-child(1) { animation-delay: 0.05s; }
+.navbar-nav .nav-item:nth-child(2) { animation-delay: 0.12s; }
+.navbar-nav .nav-item:nth-child(3) { animation-delay: 0.19s; }
+.navbar-nav .nav-item:nth-child(4) { animation-delay: 0.26s; }
+.navbar-nav .nav-item:nth-child(5) { animation-delay: 0.33s; }
+.navbar-nav .nav-item:nth-child(6) { animation-delay: 0.40s; }
+.navbar-nav .nav-item:nth-child(7) { animation-delay: 0.47s; }
+.navbar-nav .nav-item:nth-child(8) { animation-delay: 0.54s; }
+@keyframes navFadeIn {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- About Info List Hover Slide ----- */
+.about-info li {
+  transition: transform 0.3s ease !important;
+}
+.about-info li:hover {
+  transform: translateX(10px) !important;
+}
+.about-info li:hover span:first-child {
+  color: #ffbd39 !important;
+}
+
+/* ----- Progress Bar Shimmer + Glow ----- */
+.progress {
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: visible;
+}
+.progress-bar {
+  border-radius: 10px !important;
+  background: linear-gradient(90deg, #ffbd39 0%, #ff7043 50%, #ffbd39 100%) !important;
+  background-size: 250% !important;
+  animation: barShimmer 3.5s linear infinite, barGlow 2.5s ease-in-out infinite alternate;
+  overflow: visible;
+}
+@keyframes barShimmer {
+  from { background-position: 0% center; }
+  to   { background-position: 250% center; }
+}
+@keyframes barGlow {
+  0%   { box-shadow: 0 0 6px rgba(255, 189, 57, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(255, 189, 57, 0.8), 0 0 40px rgba(255, 189, 57, 0.25); }
+}
+.progress-wrap:hover h3 {
+  color: #ffbd39 !important;
+  text-shadow: 0 0 12px rgba(255, 189, 57, 0.45) !important;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* ----- Service Card 3D Glow Hover ----- */
+.services-1 {
+  transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67),
+              box-shadow 0.4s ease,
+              background 0.35s ease,
+              border-color 0.35s ease !important;
+  border: 1px solid transparent !important;
+  will-change: transform;
+}
+.services-1:hover {
+  transform: translateY(-14px) scale(1.025) !important;
+  box-shadow: 0 24px 60px rgba(255, 189, 57, 0.3),
+              0 0 40px rgba(255, 189, 57, 0.12) !important;
+  border-color: rgba(255, 189, 57, 0.35) !important;
+}
+.services-1 .icon i {
+  transition: transform 0.4s ease, color 0.3s ease !important;
+}
+.services-1:hover .icon i {
+  transform: scale(1.2) rotate(-5deg) !important;
+}
+
+/* ----- Resume Wrap Left-Border Glide ----- */
+.resume-wrap {
+  border-left: 3px solid transparent !important;
+  transition: border-color 0.4s ease,
+              transform 0.4s ease,
+              box-shadow 0.4s ease !important;
+}
+.resume-wrap:hover {
+  border-left-color: #ffbd39 !important;
+  transform: translateX(10px) !important;
+  box-shadow: -5px 0 30px rgba(255, 189, 57, 0.18), 0 8px 30px rgba(0,0,0,0.3) !important;
+}
+
+/* ----- Project Card Enhanced Hover ----- */
+.project {
+  transition: transform 0.45s cubic-bezier(0.17, 0.67, 0.83, 0.67),
+              box-shadow 0.45s ease !important;
+  overflow: hidden;
+  will-change: transform;
+}
+.project:hover {
+  transform: scale(1.04) translateY(-8px) !important;
+  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.55),
+              0 0 35px rgba(255, 189, 57, 0.22) !important;
+}
+
+/* ----- Counter Number Glow ----- */
+.ftco-counter .text strong.number {
+  animation: numberGlow 3s ease-in-out infinite alternate;
+  display: inline-block;
+}
+@keyframes numberGlow {
+  0%   { text-shadow: 0 0 8px rgba(255, 189, 57, 0.2); }
+  100% { text-shadow: 0 0 28px rgba(255, 189, 57, 1), 0 0 55px rgba(255, 189, 57, 0.5); }
+}
+
+/* ----- Counter Block Hover Lift ----- */
+.ftco-counter .block-18 {
+  transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+}
+.ftco-counter .block-18:hover {
+  transform: translateY(-8px) scale(1.03) !important;
+  box-shadow: 0 16px 40px rgba(255, 189, 57, 0.2) !important;
+}
+
+/* ----- Blog Entry Card Lift + Image Zoom ----- */
+.blog-entry {
+  transition: transform 0.4s ease !important;
+}
+.blog-entry:hover {
+  transform: translateY(-10px) !important;
+}
+.block-20 {
+  transition: transform 0.55s ease !important;
+  overflow: hidden;
+}
+.blog-entry:hover .block-20 {
+  transform: scale(1.06) !important;
+}
+
+/* ----- Contact Info Box Glow Lift ----- */
+.contact-section .box {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 189, 57, 0.08) !important;
+  transition: transform 0.4s ease,
+              box-shadow 0.4s ease,
+              border-color 0.4s ease !important;
+}
+.contact-section .box:hover {
+  transform: translateY(-12px) !important;
+  box-shadow: 0 22px 55px rgba(255, 189, 57, 0.2),
+              0 0 22px rgba(255, 189, 57, 0.1) !important;
+  border-color: rgba(255, 189, 57, 0.4) !important;
+}
+.contact-section .box .icon {
+  transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+}
+.contact-section .box:hover .icon {
+  transform: scale(1.2) rotate(6deg) !important;
+  box-shadow: 0 0 28px rgba(255, 189, 57, 0.55) !important;
+}
+
+/* ----- Footer Social Spin ----- */
+.ftco-footer-social li a {
+  transition: transform 0.45s ease,
+              background 0.35s ease,
+              box-shadow 0.35s ease !important;
+}
+.ftco-footer-social li a:hover {
+  transform: rotate(360deg) scale(1.15) !important;
+  background: rgba(255, 189, 57, 0.3) !important;
+  box-shadow: 0 0 22px rgba(255, 189, 57, 0.55) !important;
+}
+
+/* ----- Button Ripple ----- */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.55s ease, height 0.55s ease, opacity 0.55s ease;
+  opacity: 0;
+}
+.btn:active::after {
+  width: 280px;
+  height: 280px;
+  opacity: 0;
+}
+
+/* ----- Hire Me Section Gradient Glow ----- */
+.ftco-hireme {
+  position: relative;
+  overflow: hidden;
+}
+.ftco-hireme::before {
+  content: '';
+  position: absolute;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  background: linear-gradient(45deg, #ffbd39, #ff7043, #ffd700, #ff7043, #ffbd39);
+  background-size: 350%;
+  z-index: -1;
+  animation: borderSpin 5s linear infinite;
+  opacity: 0.55;
+  filter: blur(6px);
+}
+@keyframes borderSpin {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.ftco-hireme h2 span {
+  animation: textShimmer 4s linear infinite;
+  background: linear-gradient(120deg, #000, #555, #000);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ----- Ambient background gradient pulse ----- */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background:
+    radial-gradient(ellipse at 20% 40%, rgba(255, 189, 57, 0.030) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 60%, rgba(249, 109, 0, 0.020) 0%, transparent 55%);
+  animation: bgPulse 18s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -10;
+}
+@keyframes bgPulse {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(40px, 25px) rotate(6deg); }
+}
+
+/* ----- Floating blob shapes in background ----- */
+.bg-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: -6;
+  animation: blobDrift 22s ease-in-out infinite alternate;
+}
+@keyframes blobDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(50px, -40px) scale(1.15); }
+  66%  { transform: translate(-35px, 50px) scale(0.88); }
+  100% { transform: translate(25px, 25px) scale(1.06); }
+}
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+#ftco-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.65s ease, visibility 0.65s ease;
+}
+#ftco-preloader.preloader-hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: preloaderFadeIn 0.6s ease both;
+}
+@keyframes preloaderFadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Logo ring --- */
+.preloader-logo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-initial {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  color: #ffbd39;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-shadow: 0 0 22px rgba(255,189,57,0.55);
+  animation: logoPulse 1.6s ease-in-out infinite alternate;
+}
+@keyframes logoPulse {
+  from { text-shadow: 0 0 12px rgba(255,189,57,0.4);  }
+  to   { text-shadow: 0 0 32px rgba(255,189,57,0.85); }
+}
+
+.preloader-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.ring-track {
+  fill: none;
+  stroke: rgba(255,189,57,0.15);
+  stroke-width: 4;
+}
+.ring-fill {
+  fill: none;
+  stroke: #ffbd39;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 326.73;   /* 2π × 52 */
+  stroke-dashoffset: 326.73;
+  animation: ringDraw 1.4s cubic-bezier(.4,0,.2,1) 0.2s forwards,
+             ringSpin  1.6s linear        1.6s infinite;
+  filter: drop-shadow(0 0 6px rgba(255,189,57,0.7));
+}
+@keyframes ringDraw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ringSpin {
+  from { transform-origin: 60px 60px; transform: rotate(0deg); }
+  to   { transform-origin: 60px 60px; transform: rotate(360deg); }
+}
+
+/* --- Name & subtitle --- */
+.preloader-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 4px 0 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: preloaderFadeIn 0.5s ease 0.9s forwards;
+}
+.preloader-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.78rem;
+  color: #ffbd39;
+  margin: 0;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: preloaderFadeIn 0.5s ease 1.1s forwards;
+}
+
+/* --- Loading bar --- */
+.preloader-bar {
+  width: 160px;
+  height: 3px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
+  opacity: 0;
+  animation: preloaderFadeIn 0.4s ease 1.2s forwards;
+}
+.preloader-bar-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ffbd39, #ff9800);
+  border-radius: 99px;
+  animation: barLoad 1.8s cubic-bezier(.4,0,.2,1) 1.3s forwards;
+  box-shadow: 0 0 8px rgba(255,189,57,0.6);
+}
+@keyframes barLoad {
+  0%   { width: 0%; }
+  60%  { width: 75%; }
+  100% { width: 100%; }
+}
+
+/* ============================================================
+   VIEW TRANSITIONS API  (Chrome 111+ / Edge 111+)
+   Progressive enhancement — ignored entirely on other browsers
+   ============================================================ */
+@supports (view-transition-name: none) {
+
+  /* Navbar stays fixed in place — no snapshot flicker */
+  .ftco_navbar {
+    view-transition-name: vt-navbar;
+  }
+
+  /* Suppress navbar's own old/new animation so it just stays put */
+  ::view-transition-old(vt-navbar),
+  ::view-transition-new(vt-navbar) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  /* ---- Default direction: scrolling DOWN (toward bottom) ----
+     Old page slides up & fades out, new page rises up & fades in */
+  ::view-transition-old(root) {
+    animation: vtSlideOutUp   0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  ::view-transition-new(root) {
+    animation: vtSlideInUp    0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  /* ---- Going UP (back toward top) ----
+     Old page slides down & fades out, new page drops in from above */
+  html[data-vt-dir="up"] ::view-transition-old(root) {
+    animation: vtSlideOutDown 0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  html[data-vt-dir="up"] ::view-transition-new(root) {
+    animation: vtSlideInDown  0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+}
+
+/* Outgoing snapshot slides upward off screen */
+@keyframes vtSlideOutUp {
+  from { opacity: 1; transform: translateY(0);    }
+  to   { opacity: 0; transform: translateY(-4%);  }
+}
+/* Incoming snapshot rises into view from below */
+@keyframes vtSlideInUp {
+  from { opacity: 0; transform: translateY(4%);   }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+/* Outgoing snapshot slides downward off screen */
+@keyframes vtSlideOutDown {
+  from { opacity: 1; transform: translateY(0);    }
+  to   { opacity: 0; transform: translateY(4%);   }
+}
+/* Incoming snapshot drops in from above */
+@keyframes vtSlideInDown {
+  from { opacity: 0; transform: translateY(-4%);  }
+  to   { opacity: 1; transform: translateY(0);    }
+}

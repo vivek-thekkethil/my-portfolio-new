@@ -1,6 +1,10 @@
  AOS.init({
- 	duration: 800,
- 	easing: 'slide'
+ 	duration: 900,
+ 	easing: 'ease-out-cubic',
+ 	once: true,
+ 	offset: 80,
+ 	delay: 0,
+ 	anchorPlacement: 'top-bottom'
  });
 
 (function($) {
