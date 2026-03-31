@@ -292,4 +292,106 @@
     }, { passive: true });
   }
 
+  /* ------------------------------------------------
+     11. Rocket Back-to-Top
+  ------------------------------------------------ */
+  var rktBtn = document.getElementById('rocket-btn');
+  if (rktBtn) {
+    var rktLaunching = false;
+
+    // Show / hide based on scroll position
+    window.addEventListener('scroll', function () {
+      if (rktLaunching) return;
+      if (window.scrollY > 300) {
+        rktBtn.classList.add('rkt-visible');
+      } else {
+        rktBtn.classList.remove('rkt-visible');
+      }
+    }, { passive: true });
+
+    function launchRocket() {
+      if (rktLaunching) return;
+      rktLaunching = true;
+
+      // Freeze the show/hide listener and remove landing class if present
+      rktBtn.classList.remove('rkt-landing');
+      rktBtn.classList.add('rkt-launching');
+
+      // Scroll to top — use View Transition if available, else smooth scroll
+      if ('startViewTransition' in document) {
+        document.documentElement.setAttribute('data-vt-dir', 'up');
+        document.startViewTransition(function () {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // After rocket flies off screen, hide button and reset — then land it
+      setTimeout(function () {
+        rktBtn.classList.remove('rkt-launching', 'rkt-visible');
+        // Remove transform immediately (button is invisible, above screen)
+        rktBtn.style.transition = 'none';
+        rktBtn.offsetHeight;           // force reflow
+        rktBtn.style.transition = '';
+
+        rktLaunching = false;
+
+        // Small delay then land — only show if still near top
+        setTimeout(function () {
+          if (window.scrollY < 80) return; // already scrolled again, skip
+          // Nothing to show — user is at top, button should be hidden
+        }, 300);
+      }, 920);
+    }
+
+    rktBtn.addEventListener('click', launchRocket);
+    rktBtn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); launchRocket(); }
+    });
+  }
+
+  /* ------------------------------------------------
+     12. Tech Logo Skill Cards — ring draw on scroll-in
+  ------------------------------------------------ */
+  var RING_C = 2 * Math.PI * 18; // circumference ≈ 113.1  (r = 18)
+
+  var sklCards = document.querySelectorAll('.skl-card[data-pct]');
+  if (sklCards.length && 'IntersectionObserver' in window) {
+    var sklObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var card = entry.target;
+        var pct  = parseFloat(card.getAttribute('data-pct')) || 0;
+        var fill = card.querySelector('.skl-ring-fill');
+
+        // Stagger each card by its position within its parent .skl-grid
+        var siblings = Array.prototype.slice.call(
+          card.parentNode.querySelectorAll('.skl-card')
+        );
+        var idx = siblings.indexOf(card);
+
+        setTimeout(function () {
+          card.classList.add('skl-visible');
+          if (fill) {
+            fill.style.strokeDashoffset = RING_C * (1 - pct / 100);
+          }
+        }, idx * 80); // 80 ms stagger per card
+
+        sklObs.unobserve(card);
+      });
+    }, { threshold: 0.25 });
+
+    sklCards.forEach(function (card) { sklObs.observe(card); });
+
+  } else {
+    // No IntersectionObserver — reveal all immediately
+    sklCards.forEach(function (card) {
+      card.classList.add('skl-visible');
+      var pct  = parseFloat(card.getAttribute('data-pct')) || 0;
+      var fill = card.querySelector('.skl-ring-fill');
+      if (fill) fill.style.strokeDashoffset = RING_C * (1 - pct / 100);
+    });
+  }
+
 }());
