@@ -326,9 +326,45 @@
       }
       #rocket-btn.visible .rocket-exhaust { opacity: 1; }
       /* ===== /ROCKET SCROLL-TO-TOP ===== */
+
+      /* ===== GALAXY BACKGROUND ===== */
+      #galaxy-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+      html, body {
+        background: #000 !important;
+      }
+      body > * {
+        position: relative;
+        z-index: 1;
+      }
+      /* keep fixed UI elements above canvas */
+      #rocket-btn,
+      .whatsapp-float,
+      .whatsapp-tooltip,
+      #visitor-badge { z-index: 9995 !important; }
+      /* make section backgrounds translucent so galaxy shows */
+      .ftco-section,
+      .ftco-section.ftco-project,
+      section.hero,
+      .ftco-section.contact-section {
+        background: rgba(5, 5, 20, 0.72) !important;
+      }
+      .bg-light   { background: rgba(10, 10, 30, 0.80) !important; }
+      footer      { background: rgba(0, 0, 0, 0.85) !important; }
+      /* ===== /GALAXY BACKGROUND ===== */
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <!-- ===== GALAXY CANVAS ===== -->
+    <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
+    <!-- ===== /GALAXY CANVAS ===== -->
 
     <!-- ===== VISITOR COUNTER BADGE ===== -->
     <!-- <div id="visitor-badge">
@@ -1822,6 +1858,219 @@
       });
     })();
     /* ===== /ROCKET SCROLL-TO-TOP LOGIC ===== */
+    </script>
+
+    <script>
+    /* ===== GALAXY BACKGROUND ANIMATION ===== */
+    (function () {
+      var canvas = document.getElementById('galaxy-canvas');
+      var ctx    = canvas.getContext('2d');
+
+      /* ---- resize ---- */
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+
+      /* ---- star pool ---- */
+      var STAR_COUNT   = 320;
+      var NEBULA_COUNT = 6;
+      var SHOOT_MAX    = 4;
+
+      var stars   = [];
+      var nebulae = [];
+      var shoots  = [];
+
+      /* colours for nebula clouds */
+      var NEBULA_COLS = [
+        'rgba(80,0,180,',
+        'rgba(0,40,160,',
+        'rgba(180,0,80,',
+        'rgba(0,80,160,',
+        'rgba(60,0,120,',
+        'rgba(0,120,100,'
+      ];
+
+      function randBetween(a, b) { return a + Math.random() * (b - a); }
+
+      /* ---- create stars ---- */
+      function createStar() {
+        return {
+          x:      Math.random() * canvas.width,
+          y:      Math.random() * canvas.height,
+          r:      randBetween(0.3, 2.2),
+          alpha:  randBetween(0.3, 1),
+          dAlpha: randBetween(0.003, 0.012) * (Math.random() < 0.5 ? 1 : -1),
+          speed:  randBetween(0.04, 0.18),
+          angle:  Math.random() * Math.PI * 2,
+          drift:  randBetween(-0.0004, 0.0004)
+        };
+      }
+
+      for (var i = 0; i < STAR_COUNT; i++) stars.push(createStar());
+
+      /* ---- create nebula blobs ---- */
+      for (var n = 0; n < NEBULA_COUNT; n++) {
+        nebulae.push({
+          x:    Math.random() * canvas.width,
+          y:    Math.random() * canvas.height,
+          rx:   randBetween(180, 420),
+          ry:   randBetween(120, 300),
+          col:  NEBULA_COLS[n % NEBULA_COLS.length],
+          a:    randBetween(0.04, 0.10),
+          rot:  Math.random() * Math.PI,
+          dRot: randBetween(0.00008, 0.0003) * (Math.random() < 0.5 ? 1 : -1),
+          vx:   randBetween(-0.12, 0.12),
+          vy:   randBetween(-0.08, 0.08)
+        });
+      }
+
+      /* ---- shooting star factory ---- */
+      function spawnShoot() {
+        return {
+          x:     Math.random() * canvas.width,
+          y:     Math.random() * canvas.height * 0.6,
+          len:   randBetween(80, 220),
+          speed: randBetween(8, 18),
+          angle: Math.PI / 4 + randBetween(-0.3, 0.3),
+          alpha: 1,
+          life:  1
+        };
+      }
+
+      /* spawn a shooting star every 2-5 s */
+      function maybeShoot() {
+        if (shoots.length < SHOOT_MAX) shoots.push(spawnShoot());
+        setTimeout(maybeShoot, randBetween(2000, 5000));
+      }
+      setTimeout(maybeShoot, 1500);
+
+      /* ---- draw nebula ---- */
+      function drawNebulae() {
+        nebulae.forEach(function (nb) {
+          ctx.save();
+          ctx.translate(nb.x, nb.y);
+          ctx.rotate(nb.rot);
+          var g = ctx.createRadialGradient(0, 0, 0, 0, 0, nb.rx);
+          g.addColorStop(0,   nb.col + nb.a + ')');
+          g.addColorStop(0.5, nb.col + (nb.a * 0.4) + ')');
+          g.addColorStop(1,   nb.col + '0)');
+          ctx.scale(1, nb.ry / nb.rx);
+          ctx.beginPath();
+          ctx.arc(0, 0, nb.rx, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+          ctx.restore();
+
+          /* drift */
+          nb.x   += nb.vx;
+          nb.y   += nb.vy;
+          nb.rot += nb.dRot;
+          if (nb.x < -nb.rx)             nb.x = canvas.width  + nb.rx;
+          if (nb.x > canvas.width  + nb.rx) nb.x = -nb.rx;
+          if (nb.y < -nb.ry)             nb.y = canvas.height + nb.ry;
+          if (nb.y > canvas.height + nb.ry) nb.y = -nb.ry;
+        });
+      }
+
+      /* ---- draw stars ---- */
+      function drawStars() {
+        stars.forEach(function (s) {
+          /* twinkle */
+          s.alpha += s.dAlpha;
+          if (s.alpha > 1)   { s.alpha = 1;   s.dAlpha = -Math.abs(s.dAlpha); }
+          if (s.alpha < 0.1) { s.alpha = 0.1; s.dAlpha =  Math.abs(s.dAlpha); }
+
+          /* slow drift */
+          s.angle += s.drift;
+          s.x += Math.cos(s.angle) * s.speed;
+          s.y += Math.sin(s.angle) * s.speed;
+
+          /* wrap */
+          if (s.x < 0)             s.x = canvas.width;
+          if (s.x > canvas.width)  s.x = 0;
+          if (s.y < 0)             s.y = canvas.height;
+          if (s.y > canvas.height) s.y = 0;
+
+          /* glow for brighter stars */
+          if (s.r > 1.4) {
+            var g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4);
+            g.addColorStop(0,   'rgba(255,255,255,' + s.alpha + ')');
+            g.addColorStop(1,   'rgba(255,255,255,0)');
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r * 4, 0, Math.PI * 2);
+            ctx.fillStyle = g;
+            ctx.fill();
+          }
+
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,' + s.alpha + ')';
+          ctx.fill();
+        });
+      }
+
+      /* ---- draw shooting stars ---- */
+      function drawShoots() {
+        for (var i = shoots.length - 1; i >= 0; i--) {
+          var sh = shoots[i];
+          var ex = sh.x + Math.cos(sh.angle) * sh.len;
+          var ey = sh.y + Math.sin(sh.angle) * sh.len;
+
+          var g = ctx.createLinearGradient(sh.x, sh.y, ex, ey);
+          g.addColorStop(0, 'rgba(255,255,255,0)');
+          g.addColorStop(1, 'rgba(255,255,255,' + sh.alpha + ')');
+
+          ctx.save();
+          ctx.lineWidth   = 1.8;
+          ctx.strokeStyle = g;
+          ctx.shadowColor = '#fff';
+          ctx.shadowBlur  = 6;
+          ctx.beginPath();
+          ctx.moveTo(sh.x, sh.y);
+          ctx.lineTo(ex, ey);
+          ctx.stroke();
+          ctx.restore();
+
+          /* advance */
+          sh.x    += Math.cos(sh.angle) * sh.speed;
+          sh.y    += Math.sin(sh.angle) * sh.speed;
+          sh.life -= 0.018;
+          sh.alpha = sh.life;
+
+          if (sh.life <= 0 || sh.x > canvas.width + 50 || sh.y > canvas.height + 50) {
+            shoots.splice(i, 1);
+          }
+        }
+      }
+
+      /* ---- main loop ---- */
+      function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        /* deep space gradient */
+        var bg = ctx.createRadialGradient(
+          canvas.width * 0.5,  canvas.height * 0.4, 0,
+          canvas.width * 0.5,  canvas.height * 0.5, Math.max(canvas.width, canvas.height)
+        );
+        bg.addColorStop(0,   '#0d0028');
+        bg.addColorStop(0.4, '#04001a');
+        bg.addColorStop(1,   '#000005');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        drawNebulae();
+        drawStars();
+        drawShoots();
+
+        requestAnimationFrame(loop);
+      }
+
+      loop();
+    })();
+    /* ===== /GALAXY BACKGROUND ANIMATION ===== */
     </script>
   </body>
 </html>
