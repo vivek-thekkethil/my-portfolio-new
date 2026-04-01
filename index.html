@@ -1318,8 +1318,12 @@
     <!-- ===== VISITOR COUNTER ===== -->
     <script>
       (function () {
-        var badge   = document.getElementById('visitor-badge');
-        var numEl   = document.getElementById('vb-num');
+        var badge  = document.getElementById('visitor-badge');
+        var numEl  = document.getElementById('vb-num');
+        var VISIT_KEY = 'vk_has_visited';
+        var LOCAL_KEY = 'vk_portfolio_visits';
+        var BASE_URL  = 'https://api.countapi.xyz';
+        var NAMESPACE = 'vivek-krishnan-portfolio/visits';
 
         function formatNumber(n) {
           return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -1330,26 +1334,39 @@
           badge.classList.add('show');
         }
 
-        /* ── localStorage fallback counter ── */
-        function localHit() {
-          var key   = 'vk_portfolio_visits';
-          var count = parseInt(localStorage.getItem(key) || '0', 10) + 1;
-          localStorage.setItem(key, count);
+        /* ── Local fallback (unique-visit aware) ── */
+        function localCount(isNew) {
+          var count = parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10);
+          if (isNew) {
+            count += 1;
+            localStorage.setItem(LOCAL_KEY, count);
+          }
           return count;
         }
 
-        /* ── Try countapi.xyz, fall back to localStorage ── */
-        fetch('https://api.countapi.xyz/hit/vivek-krishnan-portfolio/visits')
+        var isNewVisitor = !localStorage.getItem(VISIT_KEY);
+
+        /* ── Mark this browser as having visited ── */
+        if (isNewVisitor) {
+          localStorage.setItem(VISIT_KEY, '1');
+        }
+
+        /* ── Hit only for new visitors, get for returning ones ── */
+        var endpoint = isNewVisitor
+          ? BASE_URL + '/hit/' + NAMESPACE          /* increments count */
+          : BASE_URL + '/get/' + NAMESPACE;         /* read-only        */
+
+        fetch(endpoint)
           .then(function (res) { return res.json(); })
           .then(function (data) {
             if (data && data.value) {
               showBadge(data.value);
             } else {
-              showBadge(localHit());
+              showBadge(localCount(isNewVisitor));
             }
           })
           .catch(function () {
-            showBadge(localHit());
+            showBadge(localCount(isNewVisitor));
           });
       })();
     </script>
