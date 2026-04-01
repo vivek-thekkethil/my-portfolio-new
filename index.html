@@ -526,6 +526,63 @@
         .proj-card { min-height: 260px; }
       }
       /* ===== /PROJECT CARDS ===== */
+
+      /* ===== GLOBAL SPACING & ALIGNMENT FIXES ===== */
+
+      /* Reduce section vertical padding site-wide */
+      .ftco-section { padding: 5em 0 !important; }
+      @media (max-width: 767.98px) { .ftco-section { padding: 3.5em 0 !important; } }
+
+      /* Section heading rows — remove stacked padding/margin */
+      .ftco-section .row.justify-content-center.pb-5     { padding-bottom: 1.5rem !important; }
+      .ftco-section .row.justify-content-center.mb-5     { margin-bottom:  1.5rem !important; }
+      .ftco-section .row.justify-content-center.pb-5.mt-5,
+      .ftco-section .row.justify-content-center.py-5.mt-5 { padding-top: 0 !important; margin-top: 0 !important; padding-bottom: 1.5rem !important; }
+      .ftco-section .row.justify-content-center.mb-5.pb-5 { margin-bottom: 1.5rem !important; padding-bottom: 0 !important; }
+      .ftco-section .row.justify-content-center.pb-3     { padding-bottom: 1rem !important; }
+
+      /* About: image & text proper vertical alignment */
+      .ftco-about .col-md-6.col-lg-7 { padding-bottom: 0 !important; }
+      .ftco-about .img-about         { min-height: 360px; }
+
+      /* Resume: tighten bottom */
+      #resume-section .row.justify-content-center.mt-5 { margin-top: 2rem !important; }
+
+      /* Services: remove the extra mt-5 on the heading row */
+      #services-section .row.justify-content-center.py-5.mt-5 { margin-top: 0 !important; padding-top: 0 !important; }
+
+      /* Skills: tighten the extra bottom space before projects */
+      #skills-section .skl-group:last-child { margin-bottom: 0; }
+
+      /* Counter strip: give it a little breathing room */
+      #section-counter { padding: 3em 0 !important; }
+
+      /* Hire-me band: remove extra margin-top Bootstrap class */
+      .ftco-hireme.margin-top { margin-top: 0 !important; }
+
+      /* Blog: fix the heading double-bottom */
+      #blog-section .row.justify-content-center.mb-5.pb-5 { margin-bottom: 2rem !important; padding-bottom: 0 !important; }
+
+      /* Game section: tighten top */
+      #game-section { padding: 5em 0 !important; }
+
+      /* Contact section: normalise */
+      .contact-section.ftco-no-pb { padding-bottom: 0 !important; }
+
+      /* Footer: consistent top padding */
+      .ftco-footer { padding: 4em 0 !important; }
+
+      /* Navbar: prevent wrapping on medium screens */
+      .ftco_navbar .navbar-nav .nav-item { white-space: nowrap; }
+      .ftco_navbar .navbar-nav .nav-link { padding-left: .6rem !important; padding-right: .6rem !important; font-size: 13px; }
+      @media (max-width: 991.98px) {
+        .ftco_navbar .navbar-nav .nav-link { font-size: 14px; padding-left: 1rem !important; }
+      }
+
+      /* Headings: remove stray big-2 overflow on mobile */
+      h1.big, h1.big-2 { overflow: hidden; }
+
+      /* ===== /GLOBAL SPACING & ALIGNMENT FIXES ===== */
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -605,7 +662,7 @@
               <a href="#blog-section" class="nav-link"><span>My Blog</span></a>
             </li>
             <li class="nav-item">
-              <a href="#game-section" class="nav-link"><span>Test Your Memory!</span></a>
+              <a href="#game-section" class="nav-link"><span>Game</span></a>
             </li>
             <li class="nav-item">
               <a href="#contact-section" class="nav-link"
@@ -703,7 +760,7 @@
               ></div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-7 pl-lg-5 pb-5" data-aos="fade-left" data-aos-delay="100">
+          <div class="col-md-6 col-lg-7 pl-lg-5 pb-3" data-aos="fade-left" data-aos-delay="100">
             <div class="row justify-content-start pb-3">
               <div class="col-md-12 heading-section ftco-animate">
                 <h1 class="big">About</h1>
@@ -750,7 +807,7 @@
 
     <section class="ftco-section ftco-no-pb" id="resume-section">
       <div class="container">
-        <div class="row justify-content-center pb-5">
+        <div class="row justify-content-center pb-3">
           <div class="col-md-10 heading-section text-center ftco-animate">
             <h1 class="big big-2">Resume</h1>
             <h2 class="mb-4">Resume</h2>
@@ -838,7 +895,7 @@
 
     <section class="ftco-section" id="services-section">
       <div class="container">
-        <div class="row justify-content-center py-5 mt-5">
+        <div class="row justify-content-center pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
             <h1 class="big big-2">Services</h1>
             <h2 class="mb-4">Services</h2>
@@ -940,7 +997,7 @@
 
     <section class="ftco-section" id="skills-section">
       <div class="container">
-        <div class="row justify-content-center pb-5">
+        <div class="row justify-content-center pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
             <h1 class="big big-2">Skills</h1>
             <h2 class="mb-4">My Skills</h2>
@@ -1114,7 +1171,7 @@
 
     <section class="ftco-section ftco-project" id="projects-section">
       <div class="container">
-        <div class="row justify-content-center pb-5">
+        <div class="row justify-content-center pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
             <h1 class="big big-2">Projects</h1>
             <h2 class="mb-4">Latest Projects</h2>
@@ -1226,7 +1283,7 @@
 
     <section class="ftco-section" id="blog-section">
       <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
+        <div class="row justify-content-center mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h1 class="big big-2">Blog</h1>
             <h2 class="mb-4">Our Blog</h2>
@@ -1333,10 +1390,7 @@
     >
       <div class="container">
         <div class="row d-md-flex align-items-center">
-          <div
-            class="col-md d-flex justify-content-center counter-wrap ftco-animate"
-          data-aos="zoom-in" data-aos-delay="0"
-          >
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="0">
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="100">0</strong>
@@ -1344,10 +1398,7 @@
               </div>
             </div>
           </div>
-          <div
-            class="col-md d-flex justify-content-center counter-wrap ftco-animate"
-          data-aos="zoom-in" data-aos-delay="100"
-          >
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="100">
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="1200">0</strong>
@@ -1355,10 +1406,7 @@
               </div>
             </div>
           </div>
-          <div
-            class="col-md d-flex justify-content-center counter-wrap ftco-animate"
-          data-aos="zoom-in" data-aos-delay="200"
-          >
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="200">
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="1200">0</strong>
@@ -1366,10 +1414,7 @@
               </div>
             </div>
           </div>
-          <div
-            class="col-md d-flex justify-content-center counter-wrap ftco-animate"
-          data-aos="zoom-in" data-aos-delay="300"
-          >
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="300">
             <div class="block-18">
               <div class="text">
                 <strong class="number" data-number="500">0</strong>
@@ -1404,7 +1449,7 @@
     <!-- ===== GAME SECTION ===== -->
     <section id="game-section" class="ftco-section">
       <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
+        <div class="row justify-content-center mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h1 class="big big-2">Game</h1>
             <h2 class="mb-4">Memory Card Game</h2>
@@ -1606,7 +1651,7 @@
       id="contact-section"
     >
       <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
+        <div class="row justify-content-center mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
             <h1 class="big big-2">Contact</h1>
             <h2 class="mb-4">Contact Me</h2>
