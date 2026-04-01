@@ -544,6 +544,11 @@
       /* About: image & text proper vertical alignment */
       .ftco-about .col-md-6.col-lg-7 { padding-bottom: 0 !important; }
       .ftco-about .img-about         { min-height: 360px; }
+      .ftco-about .img-about .img    { background-size: cover; background-position: center top; min-height: 320px; }
+      @media (max-width: 767.98px) {
+        .ftco-about .img-about       { min-height: 300px; }
+        .ftco-about .img-about .img  { min-height: 300px; background-size: cover; background-position: center top; }
+      }
 
       /* Resume: tighten bottom */
       #resume-section .row.justify-content-center.mt-5 { margin-top: 2rem !important; }
@@ -684,7 +689,7 @@
             >
               <div
                 class="one-third js-fullheight order-md-last img"
-                style="background-image: url(images/vivek3.jpeg); max-height: 550px !important; height: 550px !important;"
+                style="background-image: url(images/vivek3.png); max-height: 550px !important; height: 550px !important;"
               >
                 <div class="overlay"></div>
               </div>
@@ -719,7 +724,7 @@
             >
               <div
                 class="one-third js-fullheight order-md-last img"
-                style="background-image: url(images/v1.png)"
+                style="background-image: url(images/v1.png); background-size: contain; background-repeat: no-repeat; background-position: center bottom;"
               >
                 <div class="overlay"></div>
               </div>
