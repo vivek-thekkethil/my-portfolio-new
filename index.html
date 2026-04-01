@@ -358,6 +358,174 @@
       .bg-light   { background: rgba(10, 10, 30, 0.80) !important; }
       footer      { background: rgba(0, 0, 0, 0.85) !important; }
       /* ===== /GALAXY BACKGROUND ===== */
+
+      /* ===== PROJECT CARDS ===== */
+      #projects-section { background: transparent !important; }
+      #projects-section .heading-section h1.big { color: rgba(255,255,255,0.04); }
+      #projects-section .heading-section h2,
+      #projects-section .heading-section p { color: rgba(255,255,255,0.85); }
+
+      .proj-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 10px;
+      }
+      .proj-grid .proj-card-wide { grid-column: span 2; }
+
+      .proj-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        min-height: 300px;
+        cursor: pointer;
+        background: #0d0028;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        transition: transform 0.38s cubic-bezier(.4,0,.2,1),
+                    box-shadow 0.38s cubic-bezier(.4,0,.2,1);
+      }
+      .proj-card:hover {
+        transform: translateY(-8px) scale(1.015);
+        box-shadow: 0 20px 60px rgba(100,0,200,0.35), 0 4px 20px rgba(0,0,0,0.7);
+      }
+
+      /* image */
+      .proj-card .pc-img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center top;
+        transition: transform 0.55s cubic-bezier(.4,0,.2,1);
+      }
+      .proj-card:hover .pc-img { transform: scale(1.08); }
+
+      /* always-on bottom gradient */
+      .proj-card .pc-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(5,0,20,0.97)  0%,
+          rgba(5,0,20,0.75) 38%,
+          rgba(5,0,20,0.18) 68%,
+          transparent       100%
+        );
+        transition: background 0.4s;
+      }
+      .proj-card:hover .pc-gradient {
+        background: linear-gradient(
+          to top,
+          rgba(5,0,20,0.98)  0%,
+          rgba(5,0,20,0.82) 50%,
+          rgba(30,0,80,0.30) 80%,
+          transparent       100%
+        );
+      }
+
+      /* glowing border on hover */
+      .proj-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        border: 1.5px solid transparent;
+        background: linear-gradient(135deg, rgba(233,69,96,0), rgba(100,0,220,0)) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        transition: background 0.4s;
+        pointer-events: none;
+      }
+      .proj-card:hover::after {
+        background: linear-gradient(135deg, rgba(233,69,96,0.7), rgba(100,0,220,0.7)) border-box;
+      }
+
+      /* text area */
+      .proj-card .pc-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 28px 26px 24px;
+        z-index: 2;
+      }
+      .proj-card .pc-tag {
+        display: inline-block;
+        background: linear-gradient(135deg, #e94560, #8b00d4);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 50px;
+        margin-bottom: 10px;
+      }
+      .proj-card .pc-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0 0 8px;
+        line-height: 1.3;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+      }
+      .proj-card-wide .pc-title { font-size: 1.45rem; }
+      .proj-card .pc-title a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .proj-card .pc-title a:hover { color: #e94560; }
+      .proj-card .pc-meta {
+        font-size: 12px;
+        color: rgba(255,255,255,0.55);
+        margin: 0;
+        letter-spacing: 0.4px;
+      }
+
+      /* view button revealed on hover */
+      .proj-card .pc-view {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 14px;
+        padding: 8px 20px;
+        background: linear-gradient(135deg, #e94560, #8b00d4);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        border-radius: 50px;
+        text-decoration: none;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s, transform 0.3s;
+        box-shadow: 0 4px 20px rgba(233,69,96,0.4);
+      }
+      .proj-card:hover .pc-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .proj-card .pc-view svg { width: 13px; height: 13px; fill: #fff; }
+
+      /* top-right number badge */
+      .proj-card .pc-num {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        color: rgba(255,255,255,0.22);
+        letter-spacing: 2px;
+        z-index: 2;
+      }
+
+      @media (max-width: 768px) {
+        .proj-grid { grid-template-columns: 1fr; }
+        .proj-grid .proj-card-wide { grid-column: span 1; }
+        .proj-card { min-height: 260px; }
+      }
+      /* ===== /PROJECT CARDS ===== */
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -950,114 +1118,108 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
             <h1 class="big big-2">Projects</h1>
             <h2 class="mb-4">Latest Projects</h2>
-            <p>
-              A selection of real-world projects I've built — from CRM platforms and SaaS applications to e-commerce stores and content management systems.
-            </p>
+            <p>A selection of real-world projects I've built — from CRM platforms and SaaS applications to e-commerce stores and content management systems.</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div
-              class="project img ftco-animate d-flex justify-content-center align-items-center"
-              style="background-image: url(images/project1.png)"
-            >
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3>
-                  <a href="https://academy.augustoni.swiss/" target="_blank"
-                    >Content Management</a
-                  >
-                </h3>
-                <span>Laravel Development</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div
-              class="project img ftco-animate d-flex justify-content-center align-items-center"
-              style="background-image: url(images/project2.png)"
-            >
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3>
-                  <a
-                    href="https://tcard.leantransitionsolutions.com/"
-                    target="_blank"
-                    >Saas Application</a
-                  >
-                </h3>
-                <span>T-card</span>
-              </div>
+
+        <div class="proj-grid">
+
+          <!-- Card 1 – wide -->
+          <div class="proj-card proj-card-wide ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project2.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">01</span>
+            <div class="pc-body">
+              <span class="pc-tag">SaaS Application</span>
+              <h3 class="pc-title"><a href="https://tcard.leantransitionsolutions.com/" target="_blank">T-Card SaaS Platform</a></h3>
+              <p class="pc-meta">Lean Transition Solutions &mdash; Laravel &amp; Vue.js</p>
+              <a class="pc-view" href="https://tcard.leantransitionsolutions.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
             </div>
           </div>
 
-          <div class="col-md-8">
-            <div
-              class="project img ftco-animate d-flex justify-content-center align-items-center"
-              style="background-image: url(images/project3.png)"
-            >
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3>
-                  <a href="https://www.propcrm.com/" target="_blank"
-                    >Real Estate &amp; CRM</a
-                  >
-                </h3>
-                <span>Web Development</span>
-              </div>
+          <!-- Card 2 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project1.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">02</span>
+            <div class="pc-body">
+              <span class="pc-tag">Laravel CMS</span>
+              <h3 class="pc-title"><a href="https://academy.augustoni.swiss/" target="_blank">Content Management System</a></h3>
+              <p class="pc-meta">Augustoni Academy &mdash; Laravel Development</p>
+              <a class="pc-view" href="https://academy.augustoni.swiss/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
             </div>
+          </div>
 
-            <div
-              class="project img ftco-animate d-flex justify-content-center align-items-center"
-              style="background-image: url(images/project7.png)"
-            >
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3>
-                  <a
-                    href="https://mondialxpress.com/"
-                    target="_blank"
-                    >E-commerce Website</a
-                  >
-                </h3>
-                <span>Laravel Development</span>
-              </div>
+          <!-- Card 3 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project3.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">03</span>
+            <div class="pc-body">
+              <span class="pc-tag">Real Estate CRM</span>
+              <h3 class="pc-title"><a href="https://www.propcrm.com/" target="_blank">PropCRM &mdash; Real Estate Platform</a></h3>
+              <p class="pc-meta">PropCRM &mdash; Full Stack Web Development</p>
+              <a class="pc-view" href="https://www.propcrm.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="row">
-              <div class="col-md-12">
-                <div
-                  class="project img ftco-animate d-flex justify-content-center align-items-center"
-                  style="background-image: url(images/project4.png)"
-                >
-                  <div class="overlay"></div>
-                  <div class="text text-center p-4">
-                    <h3>
-                      <a
-                        href="https://kotheppuram-family-main-typhct.free.laravel.cloud/"
-                        target="_blank"
-                        >My Family Website</a
-                      >
-                    </h3>
-                    <span>Web Development</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div
-                  class="project img ftco-animate d-flex justify-content-center align-items-center"
-                  style="background-image: url(images/project6.png)"
-                >
-                  <div class="overlay"></div>
-                  <div class="text text-center p-4">
-                    <h3><a href="https://almenhaliadvocates.com/" target="_blank">Content Management</a></h3>
-                    <span>Laravel Development</span>
-                  </div>
-                </div>
-              </div>
+
+          <!-- Card 4 – wide -->
+          <div class="proj-card proj-card-wide ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project7.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">04</span>
+            <div class="pc-body">
+              <span class="pc-tag">E-Commerce</span>
+              <h3 class="pc-title"><a href="https://mondialxpress.com/" target="_blank">Mondial Xpress &mdash; E-commerce Store</a></h3>
+              <p class="pc-meta">Mondial Xpress &mdash; Laravel Development</p>
+              <a class="pc-view" href="https://mondialxpress.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
             </div>
           </div>
+
+          <!-- Card 5 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project4.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">05</span>
+            <div class="pc-body">
+              <span class="pc-tag">Family Web</span>
+              <h3 class="pc-title"><a href="https://kotheppuram-family-main-typhct.free.laravel.cloud/" target="_blank">My Family Website</a></h3>
+              <p class="pc-meta">Personal Project &mdash; Full Stack Development</p>
+              <a class="pc-view" href="https://kotheppuram-family-main-typhct.free.laravel.cloud/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 6 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project6.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">06</span>
+            <div class="pc-body">
+              <span class="pc-tag">Laravel CMS</span>
+              <h3 class="pc-title"><a href="https://almenhaliadvocates.com/" target="_blank">Al Menhali Advocates</a></h3>
+              <p class="pc-meta">Al Menhali &mdash; Laravel Development</p>
+              <a class="pc-view" href="https://almenhaliadvocates.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
