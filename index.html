@@ -251,6 +251,81 @@
         .mem-card-front, .mem-card-back { font-size: 22px; }
       }
       /* ===== /MEMORY CARD GAME ===== */
+
+      /* ===== ROCKET SCROLL-TO-TOP ===== */
+      #rocket-btn {
+        position: fixed;
+        bottom: 110px;
+        right: 36px;
+        width: 52px;
+        height: 52px;
+        z-index: 9995;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        pointer-events: none;
+        outline: none;
+      }
+      #rocket-btn.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      #rocket-btn.launching {
+        animation: rocket-launch 0.7s cubic-bezier(.4,0,.2,1) forwards;
+      }
+      @keyframes rocket-launch {
+        0%   { transform: translateY(0)   scale(1);    opacity: 1; }
+        60%  { transform: translateY(-80px) scale(1.1); opacity: 1; }
+        100% { transform: translateY(-200px) scale(0.6); opacity: 0; }
+      }
+      .rocket-wrap { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+      .rocket-svg { width: 38px; height: 58px; filter: drop-shadow(0 0 8px rgba(233,69,96,0.7)); }
+      .r-body  { fill: #e94560; }
+      .r-shine { fill: #fff; }
+      .r-window { fill: #0f3460; stroke: #fff; stroke-width: 1.5; }
+      .r-window-glare { fill: rgba(255,255,255,0.6); }
+      .r-fin   { fill: #c0392b; }
+      .r-nozzle { fill: #7f8c8d; }
+      .rocket-flames {
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 3px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      #rocket-btn.visible .rocket-flames { opacity: 1; }
+      .flame {
+        display: block;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        animation: flicker 0.3s infinite alternate;
+      }
+      .f1 { width: 8px;  height: 14px; background: linear-gradient(#fff700, #ff4500); animation-delay: 0s; }
+      .f2 { width: 12px; height: 20px; background: linear-gradient(#fff700, #e94560); animation-delay: 0.1s; }
+      .f3 { width: 8px;  height: 14px; background: linear-gradient(#fff700, #ff4500); animation-delay: 0.2s; }
+      @keyframes flicker {
+        0%   { transform: scaleY(1)   scaleX(1); }
+        50%  { transform: scaleY(1.1) scaleX(0.9); }
+        100% { transform: scaleY(0.85) scaleX(1.1); }
+      }
+      .rocket-exhaust {
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 22px;
+        background: radial-gradient(ellipse at top, rgba(233,69,96,0.5), transparent);
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      #rocket-btn.visible .rocket-exhaust { opacity: 1; }
+      /* ===== /ROCKET SCROLL-TO-TOP ===== */
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -326,7 +401,7 @@
               <a href="#blog-section" class="nav-link"><span>My Blog</span></a>
             </li>
             <li class="nav-item">
-              <a href="#game-section" class="nav-link"><span>Game</span></a>
+              <a href="#game-section" class="nav-link"><span>Test Your Memory!</span></a>
             </li>
             <li class="nav-item">
               <a href="#contact-section" class="nav-link"
@@ -1716,5 +1791,37 @@
       </div>
     </div>
     <!-- ===== /ROCKET BACK-TO-TOP ===== -->
+
+    <script>
+    /* ===== ROCKET SCROLL-TO-TOP LOGIC ===== */
+    (function () {
+      var btn = document.getElementById('rocket-btn');
+      if (!btn) return;
+
+      /* show / hide on scroll */
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 400) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      /* launch & scroll to top */
+      function launch() {
+        btn.classList.add('launching');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(function () {
+          btn.classList.remove('launching', 'visible');
+        }, 700);
+      }
+
+      btn.addEventListener('click', launch);
+      btn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); launch(); }
+      });
+    })();
+    /* ===== /ROCKET SCROLL-TO-TOP LOGIC ===== */
+    </script>
   </body>
 </html>
