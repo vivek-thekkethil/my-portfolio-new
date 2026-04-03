@@ -782,6 +782,14 @@
       h1.big, h1.big-2 { overflow: hidden; }
 
       /* ===== /GLOBAL SPACING & ALIGNMENT FIXES ===== */
+
+      /* ===== TYPED HERO ===== */
+      #typed-role { color: inherit; }
+      .typed-cursor { color: #ffbd39; font-weight: 300; opacity: 1; animation: typed-blink .7s infinite; }
+      @keyframes typed-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+      /* prevent line-height jump as text swaps */
+      #home-section h2 { min-height: 1.4em; }
+      /* ===== /TYPED HERO ===== */
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -894,7 +902,7 @@
                 <div class="text">
                   <span class="subheading">Hello!</span>
                   <h1 class="mb-4 mt-3">I'm <span>Vivek Krishnan</span></h1>
-                  <h2 class="mb-4">Full Stack Developer</h2>
+                  <h2 class="mb-4">I'm a&nbsp;<span id="typed-role"></span></h2>
                   <p>
                     <a href="#contact-section" class="btn btn-primary py-3 px-4">Hire me</a>
                     <a
@@ -2138,6 +2146,29 @@
     <script src="js/scrollax.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/animations-rich.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- ===== TYPED HERO ANIMATION ===== -->
+    <script>
+    (function () {
+      var el = document.getElementById('typed-role');
+      if (!el) return;
+      new Typed(el, {
+        strings: [
+          'Full Stack Developer',
+          'Laravel Developer',
+          'PHP Developer',
+        ],
+        typeSpeed: 60,
+        backSpeed: 35,
+        backDelay: 1800,
+        startDelay: 400,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|'
+      });
+    })();
+    </script>
+    <!-- ===== /TYPED HERO ANIMATION ===== -->
 
     <!-- ===== VISITOR COUNTER ===== -->
     <script>
