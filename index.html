@@ -565,8 +565,202 @@
       /* Hire-me band: remove extra margin-top Bootstrap class */
       .ftco-hireme.margin-top { margin-top: 0 !important; }
 
-      /* Blog: fix the heading double-bottom */
-      #blog-section .row.justify-content-center.mb-5.pb-5 { margin-bottom: 2rem !important; padding-bottom: 0 !important; }
+      /* ===== BLOG SECTION ===== */
+      #blog-section { background: #111; }
+      #blog-section .section-title-wrap { position: relative; margin-bottom: 3rem; }
+      #blog-section .section-title-wrap::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: #ffbd39;
+        margin: 1rem auto 0;
+        border-radius: 2px;
+      }
+
+      /* Card wrapper */
+      .blog-card {
+        position: relative;
+        background: #1a1a1a;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .blog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      }
+
+      /* Image container */
+      .blog-card .bc-img {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+      }
+      .blog-card .bc-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .blog-card:hover .bc-img img {
+        transform: scale(1.08);
+      }
+
+      /* Hover overlay */
+      .blog-card .bc-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(255,189,57,0.15), rgba(0,0,0,0.75));
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .blog-card:hover .bc-overlay { opacity: 1; }
+      .blog-card .bc-overlay .bc-read {
+        color: #fff;
+        border: 2px solid #ffbd39;
+        border-radius: 30px;
+        padding: 8px 24px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: transparent;
+        transition: background 0.2s, color 0.2s;
+      }
+      .blog-card .bc-overlay .bc-read:hover {
+        background: #ffbd39;
+        color: #111;
+      }
+
+      /* Category badge */
+      .blog-card .bc-category {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: #ffbd39;
+        color: #111;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        z-index: 2;
+      }
+
+      /* Card body */
+      .blog-card .bc-body {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border-top: 2px solid rgba(255,189,57,0.12);
+      }
+
+      /* Meta row */
+      .blog-card .bc-meta {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: rgba(255,255,255,0.45);
+        margin-bottom: 14px;
+      }
+      .blog-card .bc-meta .bc-date { color: #ffbd39; font-weight: 600; }
+      .blog-card .bc-meta .bc-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+      .blog-card .bc-meta .bc-read-time::before { content: '⏱ '; }
+
+      /* Title */
+      .blog-card .bc-title {
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.5;
+        margin-bottom: 12px;
+        flex: 1;
+      }
+      .blog-card .bc-title a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .blog-card .bc-title a:hover { color: #ffbd39; }
+
+      /* Excerpt */
+      .blog-card .bc-excerpt {
+        font-size: 14px;
+        color: rgba(255,255,255,0.55);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      /* Footer row */
+      .blog-card .bc-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        padding-top: 16px;
+        margin-top: auto;
+      }
+      .blog-card .bc-author {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: rgba(255,255,255,0.6);
+      }
+      .blog-card .bc-author-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffbd39, #ff6b6b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: #111;
+        flex-shrink: 0;
+      }
+      .blog-card .bc-comments {
+        font-size: 12px;
+        color: rgba(255,255,255,0.4);
+      }
+      .blog-card .bc-comments span { color: #ffbd39; margin-right: 4px; }
+
+      /* View all button */
+      .blog-view-all {
+        display: inline-block;
+        margin-top: 2.5rem;
+        padding: 12px 36px;
+        border: 2px solid #ffbd39;
+        border-radius: 40px;
+        color: #ffbd39;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background 0.25s, color 0.25s, transform 0.2s;
+      }
+      .blog-view-all:hover {
+        background: #ffbd39;
+        color: #111;
+        transform: translateY(-2px);
+        text-decoration: none;
+      }
+      /* ===== /BLOG SECTION ===== */
 
       /* Game section: tighten top */
       #game-section { padding: 5em 0 !important; }
@@ -1288,104 +1482,120 @@
 
     <section class="ftco-section" id="blog-section">
       <div class="container">
-        <div class="row justify-content-center mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
+        <!-- Section heading -->
+        <div class="row justify-content-center">
+          <div class="col-md-7 heading-section text-center ftco-animate section-title-wrap">
             <h1 class="big big-2">Blog</h1>
-            <h2 class="mb-4">Our Blog</h2>
-            <p>
-              Thoughts, insights, and tutorials on web development, Laravel, and modern tech.
-            </p>
+            <h2 class="mb-3">Latest Articles</h2>
+            <p class="mb-0">Thoughts, insights, and tutorials on web development, Laravel, and modern tech.</p>
           </div>
         </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
-            <div class="blog-entry justify-content-end">
-              <a
-                href="#"
-                class="block-20"
-                style="background-image: url(&quot;images/blog1.jpg&quot;)"
-              >
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center mb-3 meta">
-                  <p class="mb-0">
-                    <span class="mr-2">March 28, 2026</span>
-                    <a href="#" class="mr-2">Vivek</a>
-                    <a href="#" class="meta-chat"
-                      ><span class="icon-chat"></span> 5</a
-                    >
-                  </p>
+
+        <!-- Blog cards -->
+        <div class="row mt-5">
+
+          <!-- Card 1 -->
+          <div class="col-md-4 d-flex mb-4 ftco-animate" data-aos="fade-up" data-aos-delay="0">
+            <div class="blog-card w-100">
+              <div class="bc-img">
+                <span class="bc-category">Laravel</span>
+                <img src="images/blog1.jpg" alt="Laravel 11">
+                <div class="bc-overlay">
+                  <a href="#" class="bc-read">Read Article</a>
                 </div>
-                <h3 class="heading">
-                  <a href="#"
-                    >Laravel 11: What's New and Why You Should Upgrade Now</a
-                  >
+              </div>
+              <div class="bc-body">
+                <div class="bc-meta">
+                  <span class="bc-date">Mar 28, 2026</span>
+                  <span class="bc-sep"></span>
+                  <span class="bc-read-time">4 min read</span>
+                </div>
+                <h3 class="bc-title">
+                  <a href="#">Laravel 11: What's New and Why You Should Upgrade Now</a>
                 </h3>
-                <p>
-                  Laravel 11 brings a slimmer application skeleton, per-second rate limiting, and improved Eloquent features — here's a quick breakdown of the key changes.
-                </p>
+                <p class="bc-excerpt">Laravel 11 brings a slimmer skeleton, per-second rate limiting, and improved Eloquent features — a quick breakdown of the key changes.</p>
+                <div class="bc-footer">
+                  <div class="bc-author">
+                    <div class="bc-author-dot">V</div>
+                    <span>Vivek</span>
+                  </div>
+                  <div class="bc-comments"><span class="icon-chat"></span> 5 Comments</div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="150">
-            <div class="blog-entry justify-content-end">
-              <a
-                href="#"
-                class="block-20"
-                style="background-image: url(&quot;images/image_2.jpg&quot;)"
-              >
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center mb-3 meta">
-                  <p class="mb-0">
-                    <span class="mr-2">March 28, 2026</span>
-                    <a href="#" class="mr-2">Vivek</a>
-                    <a href="#" class="meta-chat"
-                      ><span class="icon-chat"></span> 8</a
-                    >
-                  </p>
+
+          <!-- Card 2 -->
+          <div class="col-md-4 d-flex mb-4 ftco-animate" data-aos="fade-up" data-aos-delay="150">
+            <div class="blog-card w-100">
+              <div class="bc-img">
+                <span class="bc-category">API Design</span>
+                <img src="images/image_2.jpg" alt="REST APIs">
+                <div class="bc-overlay">
+                  <a href="#" class="bc-read">Read Article</a>
                 </div>
-                <h3 class="heading">
-                  <a href="#"
-                    >Building Scalable REST APIs with Laravel and Sanctum</a
-                  >
+              </div>
+              <div class="bc-body">
+                <div class="bc-meta">
+                  <span class="bc-date">Mar 28, 2026</span>
+                  <span class="bc-sep"></span>
+                  <span class="bc-read-time">6 min read</span>
+                </div>
+                <h3 class="bc-title">
+                  <a href="#">Building Scalable REST APIs with Laravel and Sanctum</a>
                 </h3>
-                <p>
-                  Learn how to design secure, token-based REST APIs using Laravel Sanctum — from authentication to role-based access control and API versioning.
-                </p>
+                <p class="bc-excerpt">Design secure, token-based REST APIs using Laravel Sanctum — from authentication to role-based access control and API versioning.</p>
+                <div class="bc-footer">
+                  <div class="bc-author">
+                    <div class="bc-author-dot">V</div>
+                    <span>Vivek</span>
+                  </div>
+                  <div class="bc-comments"><span class="icon-chat"></span> 8 Comments</div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
-            <div class="blog-entry">
-              <a
-                href="#"
-                class="block-20"
-                style="background-image: url(&quot;images/vue.png&quot;)"
-              >
-              </a>
-              <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center mb-3 meta">
-                  <p class="mb-0">
-                    <span class="mr-2">March 28, 2026</span>
-                    <a href="#" class="mr-2">Vivek</a>
-                    <a href="#" class="meta-chat"
-                      ><span class="icon-chat"></span> 6</a
-                    >
-                  </p>
+
+          <!-- Card 3 -->
+          <div class="col-md-4 d-flex mb-4 ftco-animate" data-aos="fade-up" data-aos-delay="300">
+            <div class="blog-card w-100">
+              <div class="bc-img">
+                <span class="bc-category">Vue.js</span>
+                <img src="images/vue.png" alt="Vue.js + Laravel">
+                <div class="bc-overlay">
+                  <a href="#" class="bc-read">Read Article</a>
                 </div>
-                <h3 class="heading">
-                  <a href="#"
-                    >Vue.js + Laravel: The Perfect Full Stack Combo in 2026</a
-                  >
+              </div>
+              <div class="bc-body">
+                <div class="bc-meta">
+                  <span class="bc-date">Mar 28, 2026</span>
+                  <span class="bc-sep"></span>
+                  <span class="bc-read-time">5 min read</span>
+                </div>
+                <h3 class="bc-title">
+                  <a href="#">Vue.js + Laravel: The Perfect Full Stack Combo in 2026</a>
                 </h3>
-                <p>
-                  Discover why pairing Vue.js with Laravel remains one of the most productive full-stack setups — with Inertia.js bridging the gap seamlessly.
-                </p>
+                <p class="bc-excerpt">Discover why pairing Vue.js with Laravel remains one of the most productive full-stack setups — with Inertia.js bridging the gap seamlessly.</p>
+                <div class="bc-footer">
+                  <div class="bc-author">
+                    <div class="bc-author-dot">V</div>
+                    <span>Vivek</span>
+                  </div>
+                  <div class="bc-comments"><span class="icon-chat"></span> 6 Comments</div>
+                </div>
               </div>
             </div>
+          </div>
+
+        </div><!-- /row -->
+
+        <!-- View all -->
+        <div class="row">
+          <div class="col-12 text-center ftco-animate" data-aos="fade-up">
+            <a href="#" class="blog-view-all">View All Posts</a>
           </div>
         </div>
+
       </div>
     </section>
 
