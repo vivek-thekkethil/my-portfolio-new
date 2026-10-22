@@ -41,9 +41,10 @@
 
     // Map each section's element to its vertical position so we know
     // whether the user is navigating "down" or "up" the page.
+    // must follow the order the sections appear on the page
     var sectionIds = [
-      'home-section', 'about-section', 'resume-section',
-      'services-section', 'skills-section', 'projects-section',
+      'home-section', 'projects-section', 'resume-section',
+      'about-section', 'skills-section', 'services-section',
       'blog-section', 'contact-section'
     ];
 
@@ -67,6 +68,7 @@
       if (!anchor) return;
 
       var hash   = anchor.getAttribute('href');
+      if (hash.length < 2) return; // bare "#" placeholder links
       var target = document.querySelector(hash);
       if (!target) return;
 
@@ -86,51 +88,6 @@
       });
     });
   }
-
-  /* ------------------------------------------------
-     1. Custom Cursor
-  ------------------------------------------------ */
-  var dot  = document.createElement('div');
-  var ring = document.createElement('div');
-  dot.className  = 'cursor-dot';
-  ring.className = 'cursor-ring';
-  document.body.appendChild(dot);
-  document.body.appendChild(ring);
-
-  var mx = 0, my = 0, rx = 0, ry = 0;
-
-  document.addEventListener('mousemove', function (e) {
-    mx = e.clientX;
-    my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-  });
-
-  (function animRing() {
-    rx += (mx - rx) * 0.13;
-    ry += (my - ry) * 0.13;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(animRing);
-  }());
-
-  var interactiveEls = document.querySelectorAll('a,button,.btn,.services-1,.project,.blog-entry');
-  interactiveEls.forEach(function (el) {
-    el.addEventListener('mouseenter', function () {
-      dot.style.transform   = 'translate(-50%,-50%) scale(2.8)';
-      dot.style.background  = '#ff7043';
-      ring.style.width      = '62px';
-      ring.style.height     = '62px';
-      ring.style.borderColor = 'rgba(255,112,67,.65)';
-    });
-    el.addEventListener('mouseleave', function () {
-      dot.style.transform   = 'translate(-50%,-50%) scale(1)';
-      dot.style.background  = '#ffbd39';
-      ring.style.width      = '36px';
-      ring.style.height     = '36px';
-      ring.style.borderColor = 'rgba(255,189,57,.55)';
-    });
-  });
 
   var heroSection = document.getElementById('home-section');
 
@@ -156,25 +113,7 @@
     document.body.appendChild(el);
   });
 
-  /* ------------------------------------------------
-     4. Typewriter effect for hero H2
-  ------------------------------------------------ */
-  var heroH2 = document.querySelector('.owl-carousel .slider-item:first-child .slider-text h2');
-  if (heroH2) {
-    var original = heroH2.textContent.trim();
-    heroH2.textContent = '';
-    var cursor = document.createElement('span');
-    cursor.className = 'typed-cursor';
-    heroH2.parentNode.insertBefore(cursor, heroH2.nextSibling);
-    var ti = 0;
-    function typeNext() {
-      if (ti < original.length) {
-        heroH2.textContent += original[ti++];
-        setTimeout(typeNext, 75);
-      }
-    }
-    setTimeout(typeNext, 1400);
-  }
+  /* (4. Hero typewriter now handled by Typed.js in index.html) */
 
   /* ------------------------------------------------
      5. Scroll-triggered heading underline

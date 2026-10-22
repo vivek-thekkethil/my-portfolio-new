@@ -1,8 +1,47 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Vivek Krishnan</title>
     <meta charset="utf-8" />
+    <title>Vivek Krishnan — Laravel &amp; AI Developer in Dubai</title>
+    <meta name="description" content="Vivek Krishnan — Full Stack Developer in Dubai building Laravel, Vue.js and AI-powered business software: CRM, HR and SaaS platforms. 4+ years of experience." />
+    <meta name="author" content="Vivek Krishnan" />
+    <meta name="theme-color" content="#07051a" />
+    <link rel="canonical" href="https://vivek-thekkethil.github.io/my-portfolio-new/" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+
+    <!-- Social previews (LinkedIn, WhatsApp, X, Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Vivek Krishnan" />
+    <meta property="og:title" content="Vivek Krishnan — Laravel &amp; AI Developer in Dubai" />
+    <meta property="og:description" content="Vivek Krishnan — Full Stack Developer in Dubai building Laravel, Vue.js and AI-powered business software: CRM, HR and SaaS platforms. 4+ years of experience." />
+    <meta property="og:url" content="https://vivek-thekkethil.github.io/my-portfolio-new/" />
+    <meta property="og:image" content="https://vivek-thekkethil.github.io/my-portfolio-new/images/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Vivek Krishnan, Full Stack Developer in Dubai" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vivek Krishnan — Laravel &amp; AI Developer in Dubai" />
+    <meta name="twitter:description" content="Vivek Krishnan — Full Stack Developer in Dubai building Laravel, Vue.js and AI-powered business software: CRM, HR and SaaS platforms. 4+ years of experience." />
+    <meta name="twitter:image" content="https://vivek-thekkethil.github.io/my-portfolio-new/images/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vivek Krishnan",
+        "jobTitle": "Full Stack Developer",
+        "url": "https://vivek-thekkethil.github.io/my-portfolio-new/",
+        "image": "https://vivek-thekkethil.github.io/my-portfolio-new/images/og-image.png",
+        "email": "mailto:viveknair97k@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
+        "worksFor": { "@type": "Organization", "name": "Property Matters" },
+        "knowsAbout": ["Laravel", "PHP", "Vue.js", "Next.js", "MySQL", "REST APIs", "AI integration", "Claude API"],
+        "sameAs": [
+          "https://www.linkedin.com/in/vivek-krishnana487b8179",
+          "https://github.com/vivek-thekkethil"
+        ]
+      }
+    </script>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -553,6 +592,16 @@
       /* Resume: tighten bottom */
       #resume-section .row.justify-content-center.mt-5 { margin-top: 2rem !important; }
 
+      /* Resume: experience bullets & tech tags */
+      .resume-wrap .resume-points { padding-left: 1.2rem; margin-bottom: 0; }
+      .resume-wrap .resume-points li { margin-bottom: .45rem; line-height: 1.6; }
+      .resume-wrap .resume-env { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.25rem; }
+      .resume-wrap .resume-env span { font-size: 12px; font-weight: 600; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255, 189, 57, .5); color: #ffbd39; }
+      @media (max-width: 767.98px) {
+        .resume-wrap { padding: 22px; }
+        .resume-wrap .date, .resume-wrap h2 { font-size: 20px; }
+      }
+
       /* Services: remove the extra mt-5 on the heading row */
       #services-section .row.justify-content-center.py-5.mt-5 { margin-top: 0 !important; padding-top: 0 !important; }
 
@@ -791,6 +840,8 @@
       #home-section h2 { min-height: 1.4em; }
       /* ===== /TYPED HERO ===== */
     </style>
+    <link rel="stylesheet" href="css/enhance.css" />
+    <link rel="stylesheet" href="css/ask-ai.css" />
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -843,39 +894,12 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav nav ml-auto">
-            <li class="nav-item">
-              <a href="#home-section" class="nav-link"><span>Home</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#about-section" class="nav-link"><span>About</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#resume-section" class="nav-link"><span>Resume</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#services-section" class="nav-link"
-                ><span>Services</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="#skills-section" class="nav-link"><span>Skills</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#projects-section" class="nav-link"
-                ><span>Projects</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="#blog-section" class="nav-link"><span>My Blog</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#game-section" class="nav-link"><span>Game</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#contact-section" class="nav-link"
-                ><span>Contact</span></a
-              >
-            </li>
+            <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Work</span></a></li>
+            <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Experience</span></a></li>
+            <li class="nav-item"><a href="#skills-section" class="nav-link"><span>Skills</span></a></li>
+            <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li>
+            <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+            <li class="nav-item nav-cta"><a href="#contact-section" class="nav-hire">Hire me <i class="fas fa-arrow-right"></i></a></li>
           </ul>
         </div>
       </div>
@@ -889,10 +913,19 @@
               class="row d-md-flex no-gutters slider-text align-items-end justify-content-end"
               data-scrollax-parent="true"
             >
-              <div
-                class="one-third js-fullheight order-md-last img"
-                style="background-image: url(images/vivek3.png); max-height: 550px !important; height: 550px !important;"
-              >
+              <div class="one-third order-md-last hero-visual">
+                <div class="hero-aura" aria-hidden="true"></div>
+                <div class="hero-orbit" aria-hidden="true"><span></span></div>
+                <img
+                  class="hero-portrait"
+                  src="images/hero-vivek.webp"
+                  width="833" height="853"
+                  alt="Vivek Krishnan"
+                  fetchpriority="high"
+                />
+                <span class="hero-chip chip-1" aria-hidden="true"><i class="fab fa-laravel"></i> Laravel</span>
+                <span class="hero-chip chip-2" aria-hidden="true"><i class="fab fa-vuejs"></i> Vue.js</span>
+                <span class="hero-chip chip-3" aria-hidden="true"><i class="fas fa-wand-magic-sparkles"></i> AI &amp; LLMs</span>
                 <div class="overlay"></div>
               </div>
               <div
@@ -900,9 +933,15 @@
                 data-scrollax=" properties: { translateY: '70%' }"
               >
                 <div class="text">
+                  <span class="hero-status"><i></i> Available for new projects</span>
                   <span class="subheading">Hello!</span>
                   <h1 class="mb-4 mt-3">I'm <span>Vivek Krishnan</span></h1>
                   <h2 class="mb-4">I'm a&nbsp;<span id="typed-role"></span></h2>
+                  <ul class="hero-proof">
+                    <li><i class="fas fa-bolt"></i> <strong>4+</strong> years building web apps</li>
+                    <li><i class="fas fa-location-dot"></i> Dubai, UAE</li>
+                    <li><i class="fas fa-briefcase"></i> Full Stack Developer at Property Matters</li>
+                  </ul>
                   <p>
                     <a href="#contact-section" class="btn btn-primary py-3 px-4">Hire me</a>
                     <a
@@ -911,45 +950,253 @@
                       >My works</a
                     >
                   </p>
+                  <a href="#" class="hero-askai" data-askai=""><i class="fas fa-wand-magic-sparkles"></i> Or ask my AI anything about me</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="slider-item">
-          <div class="overlay"></div>
-          <div class="container">
-            <div
-              class="row d-flex no-gutters slider-text align-items-end justify-content-end"
-              data-scrollax-parent="true"
-            >
-              <div
-                class="one-third js-fullheight order-md-last img"
-                style="background-image: url(images/v1.png); background-size: contain; background-repeat: no-repeat; background-position: center bottom;"
-              >
-                <div class="overlay"></div>
-              </div>
-              <div
-                class="one-forth d-flex align-items-center ftco-animate"
-                data-scrollax=" properties: { translateY: '70%' }"
-              >
-                <div class="text">
-                  <span class="subheading">Hello!</span>
-                  <h1 class="mb-4 mt-3">
-                    I'm a <span>Laravel Developer</span> based in UAE
-                  </h1>
-                  <p>
-                    <a href="#" class="btn btn-primary py-3 px-4">Hire me</a>
-                    <a
-                      href="#"
-                      class="btn btn-white btn-outline-white py-3 px-4"
-                      >My works</a
-                    >
-                  </p>
-                </div>
+    <section
+      class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img"
+      id="section-counter"
+    >
+      <div class="container">
+        <div class="row d-md-flex align-items-center">
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="0">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number num-plus" data-number="4">0</strong>
+                <span>Years Experience</span>
               </div>
             </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="100">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number num-plus" data-number="7">0</strong>
+                <span>Projects Delivered</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="200">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="3">0</strong>
+                <span>Companies</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="300">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number num-plus" data-number="20">0</strong>
+                <span>Technologies</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-project" id="projects-section">
+      <div class="container">
+        <div class="row justify-content-center pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Projects</h1>
+            <h2 class="mb-4">Latest Projects</h2>
+            <p>A selection of real-world projects I've built — from CRM platforms and SaaS applications to e-commerce stores and content management systems.</p>
+          </div>
+        </div>
+
+        <div class="proj-grid">
+
+          <!-- Featured – full width -->
+          <div class="proj-card proj-card-featured ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project-hrhub.webp)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">01</span>
+            <div class="pc-body">
+              <span class="pc-tag">HR Management SaaS</span>
+              <span class="pc-tag pc-tag-ai"><i class="fas fa-wand-magic-sparkles"></i> Built with Claude AI</span>
+              <h3 class="pc-title"><a href="https://hr.hrhub.ae/" target="_blank" rel="noopener">HRHub &mdash; HR Management System</a></h3>
+              <p class="pc-meta">Employees, visas, payroll, leave &amp; hiring in one dashboard &mdash; Next.js, AI-assisted development with Claude</p>
+              <a class="pc-view" href="https://hr.hrhub.ae/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 1 – wide -->
+          <div class="proj-card proj-card-wide ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project2.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">02</span>
+            <div class="pc-body">
+              <span class="pc-tag">SaaS Application</span>
+              <h3 class="pc-title"><a href="https://tcard.leantransitionsolutions.com/" target="_blank">T-Card SaaS Platform</a></h3>
+              <p class="pc-meta">Lean Transition Solutions &mdash; Laravel &amp; Vue.js</p>
+              <a class="pc-view" href="https://tcard.leantransitionsolutions.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project1.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">03</span>
+            <div class="pc-body">
+              <span class="pc-tag">Laravel CMS</span>
+              <h3 class="pc-title"><a href="https://academy.augustoni.swiss/" target="_blank">Content Management System</a></h3>
+              <p class="pc-meta">Augustoni Academy &mdash; Laravel Development</p>
+              <a class="pc-view" href="https://academy.augustoni.swiss/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project3.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">04</span>
+            <div class="pc-body">
+              <span class="pc-tag">Real Estate CRM</span>
+              <h3 class="pc-title"><a href="https://www.propcrm.com/" target="_blank">PropCRM &mdash; Real Estate Platform</a></h3>
+              <p class="pc-meta">PropCRM &mdash; Full Stack Web Development</p>
+              <a class="pc-view" href="https://www.propcrm.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 4 – wide -->
+          <div class="proj-card proj-card-wide ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project7.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">05</span>
+            <div class="pc-body">
+              <span class="pc-tag">E-Commerce</span>
+              <h3 class="pc-title"><a href="https://mondialxpress.com/" target="_blank">Mondial Xpress &mdash; E-commerce Store</a></h3>
+              <p class="pc-meta">Mondial Xpress &mdash; Laravel Development</p>
+              <a class="pc-view" href="https://mondialxpress.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 5 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project4.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">06</span>
+            <div class="pc-body">
+              <span class="pc-tag">Family Web</span>
+              <h3 class="pc-title"><a href="https://kotheppuram-family-main-typhct.free.laravel.cloud/" target="_blank">My Family Website</a></h3>
+              <p class="pc-meta">Personal Project &mdash; Full Stack Development</p>
+              <a class="pc-view" href="https://kotheppuram-family-main-typhct.free.laravel.cloud/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 6 – narrow -->
+          <div class="proj-card ftco-animate">
+            <div class="pc-img" style="background-image:url(images/project6.png)"></div>
+            <div class="pc-gradient"></div>
+            <span class="pc-num">07</span>
+            <div class="pc-body">
+              <span class="pc-tag">Laravel CMS</span>
+              <h3 class="pc-title"><a href="https://almenhaliadvocates.com/" target="_blank">Al Menhali Advocates</a></h3>
+              <p class="pc-meta">Al Menhali &mdash; Laravel Development</p>
+              <a class="pc-view" href="https://almenhaliadvocates.com/" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
+                View Live
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-no-pb" id="resume-section">
+      <div class="container">
+        <div class="row justify-content-center pb-3">
+          <div class="col-md-10 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Resume</h1>
+            <h2 class="mb-4">Experience</h2>
+            <p>
+              Four years building web applications and CRM platforms with
+              PHP, Laravel, Symfony and Vue.js, across teams in Dubai and India.
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-10 resume-timeline">
+            <span class="tl-progress" aria-hidden="true"></span>
+            <div class="resume-wrap ftco-animate">
+              <span class="date">Mar 2025 &ndash; Present</span>
+              <h2>Full Stack Developer</h2>
+              <span class="position">Property Matters &middot; Dubai, UAE</span>
+              <ul class="resume-points mt-4">
+                <li>Engineered CRM modules for lead management, property listings and client relationship workflows using Laravel, Vue.js and MySQL.</li>
+                <li>Built responsive Vue.js front-end components for efficient property and customer management.</li>
+                <li>Designed and implemented RESTful APIs enabling secure communication between the front end and integrated services.</li>
+                <li>Integrated WhatsApp and email notifications to automate customer communication and engagement workflows.</li>
+                <li>Optimized database queries and schema design to improve responsiveness as data volumes grew.</li>
+                <li>Implemented authentication and role-based access control to strengthen platform security.</li>
+                <li>Worked with stakeholders to translate real estate business requirements into scalable software.</li>
+                <li>Managed source control and deployments through Git and CI/CD.</li>
+              </ul>
+              <div class="resume-env">
+                <span>PHP</span><span>Laravel</span><span>Vue.js</span><span>MySQL</span><span>REST APIs</span><span>Git</span><span>CI/CD</span>
+              </div>
+            </div>
+            <div class="resume-wrap ftco-animate">
+              <span class="date">May 2023 &ndash; Jun 2024</span>
+              <h2>Software Engineer</h2>
+              <span class="position">Lean Transition Solution Pvt Ltd &middot; Trivandrum, India</span>
+              <ul class="resume-points mt-4">
+                <li>Delivered feature development and enhancements for the T-Card application using Symfony and CodeIgniter.</li>
+                <li>Translated business requirements into maintainable application components aligned with operational needs.</li>
+                <li>Contributed to solution design discussions and framework best practices within the PHP team.</li>
+                <li>Wrote clean, well-documented code following team standards; participated in code reviews to improve quality and consistency.</li>
+                <li>Diagnosed and resolved application issues through structured debugging and troubleshooting.</li>
+                <li>Maintained and enhanced the platform through ongoing improvements.</li>
+              </ul>
+              <div class="resume-env">
+                <span>PHP</span><span>Symfony</span><span>CodeIgniter</span><span>MySQL</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Git</span>
+              </div>
+            </div>
+            <div class="resume-wrap ftco-animate">
+              <span class="date">Dec 2021 &ndash; Apr 2023</span>
+              <h2>Associate Software Engineer</h2>
+              <span class="position">Spawoz Technologies Pvt Ltd &middot; Kochi, India</span>
+              <ul class="resume-points mt-4">
+                <li>Developed web applications using Laravel, JavaScript and MySQL to support business and user requirements.</li>
+                <li>Built new features with cross-functional teams across the software development lifecycle.</li>
+                <li>Integrated third-party APIs and external services to extend functionality and improve operational workflows.</li>
+                <li>Enhanced existing systems through bug fixes, feature upgrades and improvements.</li>
+                <li>Applied secure development practices to support application security and data protection.</li>
+                <li>Maintained well-structured, scalable code for long-term reliability.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-6 text-center ftco-animate">
+            <p><a href="files/Vivek-Krishnan-CV.pdf" download="Vivek-Krishnan-CV.pdf" class="btn btn-primary py-4 px-5"><i class="fas fa-download mr-2"></i>Download CV</a></p>
           </div>
         </div>
       </div>
@@ -963,7 +1210,7 @@
               <div class="overlay"></div>
               <div
                 class="img d-flex align-self-stretch align-items-center"
-                style="background-image: url(images/v1.png)"
+                style="background-image: url(images/hero-vivek-standing.webp)"
               ></div>
             </div>
           </div>
@@ -978,20 +1225,21 @@
                   Vue.js. I specialize in creating efficient APIs, optimized
                   databases, and responsive user interfaces. Currently based in
                   Dubai, I focus on delivering high-performance, real-world
-                  solutions like CRM systems.
+                  solutions like CRM systems &mdash; and on bringing AI into
+                  them through LLM APIs, chatbots and smart automation.
                 </p>
                 <ul class="about-info mt-4 px-md-0 px-2">
                   <li class="d-flex">
                     <span>Name:</span> <span>Vivek Krishnan k</span>
                   </li>
                   <li class="d-flex">
-                    <span>Date of birth:</span> <span>April 30, 1997</span>
+                    <span>Location:</span> <span>Dubai, UAE</span>
                   </li>
                   <li class="d-flex">
                     <span>Email:</span> <span>viveknair97k@gmail.com</span>
                   </li>
                   <li class="d-flex">
-                    <span>Phone: </span> <span>+971-547481288</span>
+                    <span>Status:</span> <span>Open to new opportunities</span>
                   </li>
                 </ul>
               </div>
@@ -1003,200 +1251,10 @@
                   <span>Project complete</span>
                 </p>
                 <p>
-                  <a href="#" class="btn btn-primary py-3 px-3">Download CV</a>
+                  <a href="files/Vivek-Krishnan-CV.pdf" download="Vivek-Krishnan-CV.pdf" class="btn btn-primary py-3 px-3"><i class="fas fa-download mr-2"></i>Download CV</a>
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-      <div class="container">
-        <div class="row justify-content-center pb-3">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>
-              A small river named Duden flows by their place and supplies it
-              with the necessary regelialia. It is a paradisematic country, in
-              which roasted parts of sentences fly into your mouth.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate">
-              <span class="date">2014-2015</span>
-              <h2>Master Degree of Design</h2>
-              <span class="position">Cambridge University</span>
-              <p class="mt-4">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia. It is a paradisematic country, in
-                which roasted parts of sentences fly into your mouth.
-              </p>
-            </div>
-            <div class="resume-wrap ftco-animate">
-              <span class="date">2014-2015</span>
-              <h2>Bachelor's Degree of C.A</h2>
-              <span class="position">Cambridge University</span>
-              <p class="mt-4">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia. It is a paradisematic country, in
-                which roasted parts of sentences fly into your mouth.
-              </p>
-            </div>
-            <div class="resume-wrap ftco-animate">
-              <span class="date">2014-2015</span>
-              <h2>Diploma in Computer</h2>
-              <span class="position">Cambridge University</span>
-              <p class="mt-4">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia. It is a paradisematic country, in
-                which roasted parts of sentences fly into your mouth.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate">
-              <span class="date">2014-2015</span>
-              <h2>Art &amp; Creative Director</h2>
-              <span class="position">Cambridge University</span>
-              <p class="mt-4">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia. It is a paradisematic country, in
-                which roasted parts of sentences fly into your mouth.
-              </p>
-            </div>
-            <div class="resume-wrap ftco-animate">
-              <span class="date">2014-2015</span>
-              <h2>Wordpress Developer</h2>
-              <span class="position">Cambridge University</span>
-              <p class="mt-4">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia. It is a paradisematic country, in
-                which roasted parts of sentences fly into your mouth.
-              </p>
-            </div>
-            <div class="resume-wrap ftco-animate">
-              <span class="date">2017-2018</span>
-              <h2>UI/UX Designer</h2>
-              <span class="position">Cambridge University</span>
-              <p class="mt-4">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia. It is a paradisematic country, in
-                which roasted parts of sentences fly into your mouth.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-6 text-center ftco-animate">
-            <p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section" id="services-section">
-      <div class="container">
-        <div class="row justify-content-center pb-3">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Services</h1>
-            <h2 class="mb-4">Services</h2>
-            <p>
-              I offer a range of professional development services to help
-              businesses grow and succeed online.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
-            <a href="#" class="services-1">
-              <span class="icon">
-                <i class="flaticon-analysis"></i>
-              </span>
-              <div class="desc">
-                <h3 class="mb-5">Web Development</h3>
-                <p>
-                  Building responsive, fast, and modern websites tailored to
-                  your business needs.
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="120">
-            <a href="#" class="services-1">
-              <span class="icon">
-                <i class="flaticon-ideas"></i>
-              </span>
-              <div class="desc">
-                <h3 class="mb-5">Laravel Development</h3>
-                <p>
-                  Crafting robust, scalable web applications using the powerful
-                  Laravel PHP framework.
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="240">
-            <a href="#" class="services-1">
-              <span class="icon">
-                <i class="flaticon-flasks"></i>
-              </span>
-              <div class="desc">
-                <h3 class="mb-5">CMS Development</h3>
-                <p>
-                  Developing flexible content management systems so you can
-                  easily manage your content.
-                </p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="60">
-            <a href="#" class="services-1">
-              <span class="icon">
-                <i class="flaticon-analysis"></i>
-              </span>
-              <div class="desc">
-                <h3 class="mb-5">CRM Solutions</h3>
-                <p>
-                  Implementing custom CRM systems to streamline your customer
-                  relationships and workflows.
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="180">
-            <a href="#" class="services-1">
-              <span class="icon">
-                <i class="flaticon-ideas"></i>
-              </span>
-              <div class="desc">
-                <h3 class="mb-5">API Integration</h3>
-                <p>
-                  Seamlessly integrating third-party APIs and services to extend
-                  your application's capabilities.
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-4 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
-            <a href="#" class="services-1">
-              <span class="icon">
-                <i class="flaticon-flasks"></i>
-              </span>
-              <div class="desc">
-                <h3 class="mb-5">Ecommerce</h3>
-                <p>
-                  Building feature-rich online stores with secure payment
-                  gateways and intuitive shopping experiences.
-                </p>
-              </div>
-            </a>
           </div>
         </div>
       </div>
@@ -1209,6 +1267,64 @@
             <h1 class="big big-2">Skills</h1>
             <h2 class="mb-4">My Skills</h2>
             <p>A focused skill set built through hands-on experience in modern web development.</p>
+          </div>
+        </div>
+
+        <!-- AI & Automation -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="skl-ai-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#a78bfa"/>
+              <stop offset="55%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#ffbd39"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="skl-group skl-group-ai ftco-animate">
+          <h4 class="skl-group-label"><i class="fas fa-wand-magic-sparkles"></i> AI &amp; Automation</h4>
+          <div class="skl-grid">
+            <div class="skl-card" data-pct="80">
+              <div class="skl-ring-wrap">
+                <svg class="skl-ring-svg" viewBox="0 0 44 44"><circle class="skl-ring-bg" cx="22" cy="22" r="18"/><circle class="skl-ring-fill" cx="22" cy="22" r="18"/></svg>
+                <div class="skl-icon skl-fa-icon"><i class="fas fa-brain"></i></div>
+              </div>
+              <p class="skl-name">OpenAI / LLM APIs</p><p class="skl-pct">80%</p>
+            </div>
+            <div class="skl-card" data-pct="75">
+              <div class="skl-ring-wrap">
+                <svg class="skl-ring-svg" viewBox="0 0 44 44"><circle class="skl-ring-bg" cx="22" cy="22" r="18"/><circle class="skl-ring-fill" cx="22" cy="22" r="18"/></svg>
+                <div class="skl-icon skl-fa-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+              </div>
+              <p class="skl-name">Claude API</p><p class="skl-pct">75%</p>
+            </div>
+            <div class="skl-card" data-pct="82">
+              <div class="skl-ring-wrap">
+                <svg class="skl-ring-svg" viewBox="0 0 44 44"><circle class="skl-ring-bg" cx="22" cy="22" r="18"/><circle class="skl-ring-fill" cx="22" cy="22" r="18"/></svg>
+                <div class="skl-icon skl-fa-icon"><i class="fas fa-terminal"></i></div>
+              </div>
+              <p class="skl-name">Prompt Engineering</p><p class="skl-pct">82%</p>
+            </div>
+            <div class="skl-card" data-pct="78">
+              <div class="skl-ring-wrap">
+                <svg class="skl-ring-svg" viewBox="0 0 44 44"><circle class="skl-ring-bg" cx="22" cy="22" r="18"/><circle class="skl-ring-fill" cx="22" cy="22" r="18"/></svg>
+                <div class="skl-icon skl-fa-icon"><i class="fas fa-robot"></i></div>
+              </div>
+              <p class="skl-name">AI Chatbots</p><p class="skl-pct">78%</p>
+            </div>
+            <div class="skl-card" data-pct="70">
+              <div class="skl-ring-wrap">
+                <svg class="skl-ring-svg" viewBox="0 0 44 44"><circle class="skl-ring-bg" cx="22" cy="22" r="18"/><circle class="skl-ring-fill" cx="22" cy="22" r="18"/></svg>
+                <div class="skl-icon skl-fa-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+              </div>
+              <p class="skl-name">RAG &amp; Vector Search</p><p class="skl-pct">70%</p>
+            </div>
+            <div class="skl-card" data-pct="85">
+              <div class="skl-ring-wrap">
+                <svg class="skl-ring-svg" viewBox="0 0 44 44"><circle class="skl-ring-bg" cx="22" cy="22" r="18"/><circle class="skl-ring-fill" cx="22" cy="22" r="18"/></svg>
+                <div class="skl-icon skl-fa-icon"><i class="fas fa-code"></i></div>
+              </div>
+              <p class="skl-name">AI-Assisted Dev</p><p class="skl-pct">85%</p>
+            </div>
           </div>
         </div>
 
@@ -1376,114 +1492,132 @@
       </div>
     </section>
 
-    <section class="ftco-section ftco-project" id="projects-section">
+    <section class="ftco-section" id="services-section">
       <div class="container">
         <div class="row justify-content-center pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Latest Projects</h2>
-            <p>A selection of real-world projects I've built — from CRM platforms and SaaS applications to e-commerce stores and content management systems.</p>
+            <h1 class="big big-2">Services</h1>
+            <h2 class="mb-4">Services</h2>
+            <p>
+              From Laravel builds to AI-powered features &mdash; services that
+              help businesses grow and succeed online.
+            </p>
           </div>
         </div>
-
-        <div class="proj-grid">
-
-          <!-- Card 1 – wide -->
-          <div class="proj-card proj-card-wide ftco-animate">
-            <div class="pc-img" style="background-image:url(images/project2.png)"></div>
-            <div class="pc-gradient"></div>
-            <span class="pc-num">01</span>
-            <div class="pc-body">
-              <span class="pc-tag">SaaS Application</span>
-              <h3 class="pc-title"><a href="https://tcard.leantransitionsolutions.com/" target="_blank">T-Card SaaS Platform</a></h3>
-              <p class="pc-meta">Lean Transition Solutions &mdash; Laravel &amp; Vue.js</p>
-              <a class="pc-view" href="https://tcard.leantransitionsolutions.com/" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
-                View Live
-              </a>
-            </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
+            <a href="#" class="services-1">
+              <span class="icon">
+                <i class="flaticon-analysis"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">Web Development</h3>
+                <p>
+                  Building responsive, fast, and modern websites tailored to
+                  your business needs.
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="120">
+            <a href="#" class="services-1">
+              <span class="icon">
+                <i class="flaticon-ideas"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">Laravel Development</h3>
+                <p>
+                  Crafting robust, scalable web applications using the powerful
+                  Laravel PHP framework.
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="240">
+            <a href="#" class="services-1">
+              <span class="icon">
+                <i class="flaticon-flasks"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">CMS Development</h3>
+                <p>
+                  Developing flexible content management systems so you can
+                  easily manage your content.
+                </p>
+              </div>
+            </a>
           </div>
 
-          <!-- Card 2 – narrow -->
-          <div class="proj-card ftco-animate">
-            <div class="pc-img" style="background-image:url(images/project1.png)"></div>
-            <div class="pc-gradient"></div>
-            <span class="pc-num">02</span>
-            <div class="pc-body">
-              <span class="pc-tag">Laravel CMS</span>
-              <h3 class="pc-title"><a href="https://academy.augustoni.swiss/" target="_blank">Content Management System</a></h3>
-              <p class="pc-meta">Augustoni Academy &mdash; Laravel Development</p>
-              <a class="pc-view" href="https://academy.augustoni.swiss/" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
-                View Live
-              </a>
-            </div>
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="60">
+            <a href="#" class="services-1">
+              <span class="icon">
+                <i class="flaticon-analysis"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">CRM Solutions</h3>
+                <p>
+                  Implementing custom CRM systems to streamline your customer
+                  relationships and workflows.
+                </p>
+              </div>
+            </a>
           </div>
-
-          <!-- Card 3 – narrow -->
-          <div class="proj-card ftco-animate">
-            <div class="pc-img" style="background-image:url(images/project3.png)"></div>
-            <div class="pc-gradient"></div>
-            <span class="pc-num">03</span>
-            <div class="pc-body">
-              <span class="pc-tag">Real Estate CRM</span>
-              <h3 class="pc-title"><a href="https://www.propcrm.com/" target="_blank">PropCRM &mdash; Real Estate Platform</a></h3>
-              <p class="pc-meta">PropCRM &mdash; Full Stack Web Development</p>
-              <a class="pc-view" href="https://www.propcrm.com/" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
-                View Live
-              </a>
-            </div>
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="180">
+            <a href="#" class="services-1">
+              <span class="icon">
+                <i class="flaticon-ideas"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">API Integration</h3>
+                <p>
+                  Seamlessly integrating third-party APIs and services to extend
+                  your application's capabilities.
+                </p>
+              </div>
+            </a>
           </div>
-
-          <!-- Card 4 – wide -->
-          <div class="proj-card proj-card-wide ftco-animate">
-            <div class="pc-img" style="background-image:url(images/project7.png)"></div>
-            <div class="pc-gradient"></div>
-            <span class="pc-num">04</span>
-            <div class="pc-body">
-              <span class="pc-tag">E-Commerce</span>
-              <h3 class="pc-title"><a href="https://mondialxpress.com/" target="_blank">Mondial Xpress &mdash; E-commerce Store</a></h3>
-              <p class="pc-meta">Mondial Xpress &mdash; Laravel Development</p>
-              <a class="pc-view" href="https://mondialxpress.com/" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
-                View Live
-              </a>
-            </div>
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
+            <a href="#" class="services-1">
+              <span class="icon">
+                <i class="flaticon-flasks"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">Ecommerce</h3>
+                <p>
+                  Building feature-rich online stores with secure payment
+                  gateways and intuitive shopping experiences.
+                </p>
+              </div>
+            </a>
           </div>
-
-          <!-- Card 5 – narrow -->
-          <div class="proj-card ftco-animate">
-            <div class="pc-img" style="background-image:url(images/project4.png)"></div>
-            <div class="pc-gradient"></div>
-            <span class="pc-num">05</span>
-            <div class="pc-body">
-              <span class="pc-tag">Family Web</span>
-              <h3 class="pc-title"><a href="https://kotheppuram-family-main-typhct.free.laravel.cloud/" target="_blank">My Family Website</a></h3>
-              <p class="pc-meta">Personal Project &mdash; Full Stack Development</p>
-              <a class="pc-view" href="https://kotheppuram-family-main-typhct.free.laravel.cloud/" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
-                View Live
-              </a>
-            </div>
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="120">
+            <a href="#contact-section" class="services-1 services-ai">
+              <span class="icon">
+                <i class="fas fa-brain"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">AI Integration</h3>
+                <p>
+                  Adding LLM-powered features &mdash; smart search, summaries
+                  and content generation &mdash; to your existing apps.
+                </p>
+              </div>
+            </a>
           </div>
-
-          <!-- Card 6 – narrow -->
-          <div class="proj-card ftco-animate">
-            <div class="pc-img" style="background-image:url(images/project6.png)"></div>
-            <div class="pc-gradient"></div>
-            <span class="pc-num">06</span>
-            <div class="pc-body">
-              <span class="pc-tag">Laravel CMS</span>
-              <h3 class="pc-title"><a href="https://almenhaliadvocates.com/" target="_blank">Al Menhali Advocates</a></h3>
-              <p class="pc-meta">Al Menhali &mdash; Laravel Development</p>
-              <a class="pc-view" href="https://almenhaliadvocates.com/" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3ZM5 5h5V3H3v18h18v-7h-2v5H5V5Z"/></svg>
-                View Live
-              </a>
-            </div>
+          <div class="col-md-6 col-lg-3 text-center d-flex ftco-animate" data-aos="fade-up" data-aos-delay="240">
+            <a href="#contact-section" class="services-1 services-ai">
+              <span class="icon">
+                <i class="fas fa-robot"></i>
+              </span>
+              <div class="desc">
+                <h3 class="mb-5">AI Chatbots &amp; Automation</h3>
+                <p>
+                  WhatsApp and web chatbots plus automated workflows that save
+                  your team hours every week.
+                </p>
+              </div>
+            </a>
           </div>
-
         </div>
       </div>
     </section>
@@ -1495,101 +1629,99 @@
           <div class="col-md-7 heading-section text-center ftco-animate section-title-wrap">
             <h1 class="big big-2">Blog</h1>
             <h2 class="mb-3">Latest Articles</h2>
-            <p class="mb-0">Thoughts, insights, and tutorials on web development, Laravel, and modern tech.</p>
+            <p class="mb-0">Thoughts, insights and tutorials on web development, Laravel, AI and modern tech.</p>
           </div>
         </div>
 
         <!-- Blog cards -->
         <div class="row mt-5">
 
-          <!-- Card 1 -->
+          <!-- AI articles -->
           <div class="col-md-4 d-flex mb-4 ftco-animate" data-aos="fade-up" data-aos-delay="0">
             <div class="blog-card w-100">
               <div class="bc-img">
-                <span class="bc-category">Laravel</span>
-                <img src="images/blog1.jpg" alt="Laravel 11">
+                <span class="bc-category bc-ai"><i class="fas fa-wand-magic-sparkles"></i> AI &middot; Laravel</span>
+                <img src="images/blog-laravel-ai.svg" alt="Laravel AI SDK, Boost and MCP" loading="lazy">
                 <div class="bc-overlay">
-                  <a href="#" class="bc-read">Read Article</a>
+                  <a href="blog/laravel-ai-sdk-boost-mcp.html" class="bc-read">Read Article</a>
                 </div>
               </div>
               <div class="bc-body">
                 <div class="bc-meta">
-                  <span class="bc-date">Mar 28, 2026</span>
+                  <span class="bc-date">Oct 20, 2026</span>
                   <span class="bc-sep"></span>
-                  <span class="bc-read-time">4 min read</span>
+                  <span class="bc-read-time">7 min read</span>
                 </div>
                 <h3 class="bc-title">
-                  <a href="#">Laravel 11: What's New and Why You Should Upgrade Now</a>
+                  <a href="blog/laravel-ai-sdk-boost-mcp.html">Laravel AI SDK, Boost &amp; MCP: The New AI Toolkit for Laravel Developers</a>
                 </h3>
-                <p class="bc-excerpt">Laravel 11 brings a slimmer skeleton, per-second rate limiting, and improved Eloquent features — a quick breakdown of the key changes.</p>
+                <p class="bc-excerpt">Laravel now ships three first-party AI packages. What each one does, with code, and when to reach for which.</p>
                 <div class="bc-footer">
                   <div class="bc-author">
                     <div class="bc-author-dot">V</div>
                     <span>Vivek</span>
                   </div>
-                  <div class="bc-comments"><span class="icon-chat"></span> 5 Comments</div>
+                  <a class="bc-more" href="blog/laravel-ai-sdk-boost-mcp.html">Read <i class="fas fa-arrow-right"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 2 -->
           <div class="col-md-4 d-flex mb-4 ftco-animate" data-aos="fade-up" data-aos-delay="150">
             <div class="blog-card w-100">
               <div class="bc-img">
-                <span class="bc-category">API Design</span>
-                <img src="images/image_2.jpg" alt="REST APIs">
+                <span class="bc-category bc-ai"><i class="fas fa-network-wired"></i> AI Standards</span>
+                <img src="images/blog-mcp.svg" alt="Model Context Protocol" loading="lazy">
                 <div class="bc-overlay">
-                  <a href="#" class="bc-read">Read Article</a>
+                  <a href="blog/mcp-open-standard-ai-agents.html" class="bc-read">Read Article</a>
                 </div>
               </div>
               <div class="bc-body">
                 <div class="bc-meta">
-                  <span class="bc-date">Mar 28, 2026</span>
+                  <span class="bc-date">Oct 14, 2026</span>
                   <span class="bc-sep"></span>
                   <span class="bc-read-time">6 min read</span>
                 </div>
                 <h3 class="bc-title">
-                  <a href="#">Building Scalable REST APIs with Laravel and Sanctum</a>
+                  <a href="blog/mcp-open-standard-ai-agents.html">MCP in 2026: The Open Standard Connecting AI Agents to Business Software</a>
                 </h3>
-                <p class="bc-excerpt">Design secure, token-based REST APIs using Laravel Sanctum — from authentication to role-based access control and API versioning.</p>
+                <p class="bc-excerpt">Why the Model Context Protocol became the default way AI agents plug into real software, and what it means for CRM and HR products.</p>
                 <div class="bc-footer">
                   <div class="bc-author">
                     <div class="bc-author-dot">V</div>
                     <span>Vivek</span>
                   </div>
-                  <div class="bc-comments"><span class="icon-chat"></span> 8 Comments</div>
+                  <a class="bc-more" href="blog/mcp-open-standard-ai-agents.html">Read <i class="fas fa-arrow-right"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 3 -->
           <div class="col-md-4 d-flex mb-4 ftco-animate" data-aos="fade-up" data-aos-delay="300">
             <div class="blog-card w-100">
               <div class="bc-img">
-                <span class="bc-category">Vue.js</span>
-                <img src="images/vue.png" alt="Vue.js + Laravel">
+                <span class="bc-category bc-ai"><i class="fas fa-robot"></i> AI Agents</span>
+                <img src="images/blog-coding-agents.svg" alt="AI coding agent in a terminal" loading="lazy">
                 <div class="bc-overlay">
-                  <a href="#" class="bc-read">Read Article</a>
+                  <a href="blog/ai-coding-agents-2026.html" class="bc-read">Read Article</a>
                 </div>
               </div>
               <div class="bc-body">
                 <div class="bc-meta">
-                  <span class="bc-date">Mar 28, 2026</span>
+                  <span class="bc-date">Oct 8, 2026</span>
                   <span class="bc-sep"></span>
-                  <span class="bc-read-time">5 min read</span>
+                  <span class="bc-read-time">6 min read</span>
                 </div>
                 <h3 class="bc-title">
-                  <a href="#">Vue.js + Laravel: The Perfect Full Stack Combo in 2026</a>
+                  <a href="blog/ai-coding-agents-2026.html">AI Coding Agents in 2026: From Autocomplete to Teammate</a>
                 </h3>
-                <p class="bc-excerpt">Discover why pairing Vue.js with Laravel remains one of the most productive full-stack setups — with Inertia.js bridging the gap seamlessly.</p>
+                <p class="bc-excerpt">Agents now plan, edit and test whole features. Where the real bottleneck moved, and the habits that make them genuinely useful.</p>
                 <div class="bc-footer">
                   <div class="bc-author">
                     <div class="bc-author-dot">V</div>
                     <span>Vivek</span>
                   </div>
-                  <div class="bc-comments"><span class="icon-chat"></span> 6 Comments</div>
+                  <a class="bc-more" href="blog/ai-coding-agents-2026.html">Read <i class="fas fa-arrow-right"></i></a>
                 </div>
               </div>
             </div>
@@ -1600,7 +1732,7 @@
         <!-- View all -->
         <div class="row">
           <div class="col-12 text-center ftco-animate" data-aos="fade-up">
-            <a href="#" class="blog-view-all">View All Posts</a>
+            <a href="blog/index.html" class="blog-view-all">View All Posts</a>
           </div>
         </div>
 
@@ -1608,69 +1740,275 @@
     </section>
 
     <section
-      class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img"
-      id="section-counter"
-    >
-      <div class="container">
-        <div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="0">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="100">0</strong>
-                <span>Awards</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="100">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="1200">0</strong>
-                <span>Complete Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="200">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="1200">0</strong>
-                <span>Happy Customers</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate" data-aos="zoom-in" data-aos-delay="300">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="500">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      class="ftco-section ftco-hireme img margin-top"
-      style="background-image: url(images/bg_1.jpg)"
+      class="ftco-section ftco-hireme"
     >
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-7 ftco-animate text-center" data-aos="zoom-in" data-aos-delay="0">
-            <h2>I'm <span>Available</span> for freelancing</h2>
-            <p>
-              A small river named Duden flows by their place and supplies it
-              with the necessary regelialia.
-            </p>
-            <p class="mb-0">
-              <a href="#" class="btn btn-primary py-3 px-5">Hire me</a>
-            </p>
+          <div class="col-lg-10 ftco-animate" data-aos="zoom-in" data-aos-delay="0">
+            <div class="hireme-card text-center">
+              <h2>I'm <span>Available</span> for freelancing</h2>
+              <p>
+                Have a Laravel, Vue.js or AI integration project in mind?
+                Let's build something great together.
+              </p>
+              <p class="mb-0">
+                <a href="#contact-section" class="btn btn-primary py-3 px-5">Hire me</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <section
+      class="ftco-section contact-section ftco-no-pb"
+      id="contact-section"
+    >
+      <div class="container">
+        <div class="row justify-content-center mb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+            <p>
+              Have a project in mind or want to collaborate? Feel free to reach out — I'd love to hear from you.
+            </p>
+          </div>
+        </div>
+
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
+            <div class="align-self-stretch box p-4 text-center">
+              <div
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <span class="icon-map-signs"></span>
+              </div>
+              <h3 class="mb-4">Address</h3>
+              <p>Dubai, United Arab Emirates</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="100">
+            <div class="align-self-stretch box p-4 text-center">
+              <div
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <span class="icon-phone2"></span>
+              </div>
+              <h3 class="mb-4">Contact Number</h3>
+              <p><a href="tel:+971547481288">+971 54 748 1288</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="200">
+            <div class="align-self-stretch box p-4 text-center">
+              <div
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <span class="icon-paper-plane"></span>
+              </div>
+              <h3 class="mb-4">Email Address</h3>
+              <p><a href="mailto:viveknair97k@gmail.com">viveknair97k@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
+            <div class="align-self-stretch box p-4 text-center">
+              <div
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <span class="icon-linkedin"></span>
+              </div>
+              <h3 class="mb-4">LinkedIn</h3>
+              <p><a href="https://www.linkedin.com/in/vivek-krishnana487b8179" target="_blank" rel="noopener">vivek-krishnan</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters block-9">
+          <div class="col-md-6 order-md-last d-flex">
+            <!-- Sends through Web3Forms when data-access-key is set (free key from
+                 web3forms.com); without a key it opens the visitor's email app. -->
+            <form
+              id="contact-form"
+              class="bg-light p-4 p-md-5 contact-form"
+              data-access-key=""
+              data-to="viveknair97k@gmail.com"
+              novalidate
+            >
+              <div class="form-group">
+                <label class="cf-label" for="cf-name">Your name</label>
+                <input id="cf-name" name="name" type="text" class="form-control" autocomplete="name" required maxlength="80" />
+                <small class="cf-error" aria-live="polite"></small>
+              </div>
+              <div class="form-group">
+                <label class="cf-label" for="cf-email">Your email</label>
+                <input id="cf-email" name="email" type="email" class="form-control" autocomplete="email" required maxlength="120" />
+                <small class="cf-error" aria-live="polite"></small>
+              </div>
+              <div class="form-group">
+                <label class="cf-label" for="cf-subject">Subject</label>
+                <input id="cf-subject" name="subject" type="text" class="form-control" maxlength="120" />
+              </div>
+              <div class="form-group">
+                <label class="cf-label" for="cf-message">Message</label>
+                <textarea id="cf-message" name="message" rows="6" class="form-control" required minlength="10" maxlength="3000"></textarea>
+                <small class="cf-error" aria-live="polite"></small>
+              </div>
+              <!-- spam trap: real visitors never see or fill this -->
+              <input type="checkbox" name="botcheck" class="cf-trap" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="form-group mb-0">
+                <button type="submit" class="btn btn-primary py-3 px-5 cf-submit">
+                  <span class="cf-submit-label"><i class="fas fa-paper-plane mr-2"></i>Send Message</span>
+                  <span class="cf-spinner" aria-hidden="true"></span>
+                </button>
+              </div>
+              <p class="cf-status" role="status" aria-live="polite"></p>
+              <div class="cf-success" hidden>
+                <div class="cf-success-icon"><i class="fas fa-check"></i></div>
+                <h3>Message sent!</h3>
+                <p>Thanks for reaching out. I'll get back to you within a day or two.</p>
+                <button type="button" class="cf-again">Send another message</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-md-6 d-flex">
+            <div
+              class="img"
+              style="background-image: url(images/hero-vivek-standing.webp)"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">About</h2>
+              <p>
+                Full-stack web developer based in Dubai, UAE — specialising in
+                Laravel, PHP, and Vue.js. Passionate about building clean,
+                scalable applications that make a real difference.
+              </p>
+              <ul
+                class="ftco-footer-social list-unstyled float-md-left float-lft mt-5"
+              >
+                <li class="ftco-animate">
+                  <a href="https://www.linkedin.com/in/vivek-krishnana487b8179" target="_blank" rel="noopener noreferrer"><span class="icon-linkedin"></span></a>
+                </li>
+                <li class="ftco-animate">
+                  <a href="https://github.com/vivek-thekkethil" target="_blank" rel="noopener noreferrer"><span class="icon-github"></span></a>
+                </li>
+                <li class="ftco-animate">
+                  <a href="https://wa.me/971547481288" target="_blank" rel="noopener noreferrer"><span class="icon-whatsapp"></span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Quick Links</h2>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#projects-section"><span class="icon-long-arrow-right mr-2"></span>Work</a>
+                </li>
+                <li>
+                  <a href="#resume-section"><span class="icon-long-arrow-right mr-2"></span>Experience</a>
+                </li>
+                <li>
+                  <a href="#about-section"><span class="icon-long-arrow-right mr-2"></span>About</a>
+                </li>
+                <li>
+                  <a href="#skills-section"><span class="icon-long-arrow-right mr-2"></span>Skills</a>
+                </li>
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Services</a>
+                </li>
+                <li>
+                  <a href="#blog-section"><span class="icon-long-arrow-right mr-2"></span>Blog</a>
+                </li>
+                <li>
+                  <a href="#contact-section"><span class="icon-long-arrow-right mr-2"></span>Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Services</h2>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Web Development</a>
+                </li>
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Laravel Development</a>
+                </li>
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>CMS Development</a>
+                </li>
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>API Integration</a>
+                </li>
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>CRM Solutions</a>
+                </li>
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Ecommerce</a>
+                </li>
+                <li>
+                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>AI Integration</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Get In Touch</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li>
+                    <span class="icon icon-map-marker"></span>
+                    <span class="text">Dubai, United Arab Emirates</span>
+                  </li>
+                  <li>
+                    <a href="tel:+971547481288">
+                      <span class="icon icon-phone"></span>
+                      <span class="text">+971-547-481-288</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:viveknair97k@gmail.com">
+                      <span class="icon icon-envelope"></span>
+                      <span class="text">viveknair97k@gmail.com</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row footer-extra">
+          <div class="col-12 text-center">
+            <button type="button" class="game-toggle" aria-expanded="false" aria-controls="game-section">
+              <i class="fas fa-gamepad"></i> Take a break: play the tech memory game
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script>
+              Vivek Krishnan. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <!-- ===== GAME SECTION ===== -->
-    <section id="game-section" class="ftco-section">
+    <section id="game-section" class="ftco-section game-extra" hidden>
       <div class="container">
         <div class="row justify-content-center mb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -1869,232 +2207,6 @@
     /* ===== /MEMORY CARD GAME LOGIC ===== */
     </script>
 
-    <section
-      class="ftco-section contact-section ftco-no-pb"
-      id="contact-section"
-    >
-      <div class="container">
-        <div class="row justify-content-center mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>
-              Have a project in mind or want to collaborate? Feel free to reach out — I'd love to hear from you.
-            </p>
-          </div>
-        </div>
-
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="0">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-map-signs"></span>
-              </div>
-              <h3 class="mb-4">Address</h3>
-              <p>Dubai, United Arab Emirates</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="100">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-phone2"></span>
-              </div>
-              <h3 class="mb-4">Contact Number</h3>
-              <p><a href="tel://1234567920">+971-547481288</a></p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="200">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-paper-plane"></span>
-              </div>
-              <h3 class="mb-4">Email Address</h3>
-              <p><a href="mailto:viveknair97k@gmail.com">viveknair97k@gmail.com</a></p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate" data-aos="fade-up" data-aos-delay="300">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-globe"></span>
-              </div>
-              <h3 class="mb-4">Website</h3>
-              <p><a href="#">vivekkrishnan.com</a></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row no-gutters block-9">
-          <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-4 p-md-5 contact-form">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Your Email"
-                />
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject" />
-              </div>
-              <div class="form-group">
-                <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="7"
-                  class="form-control"
-                  placeholder="Message"
-                ></textarea>
-              </div>
-              <div class="form-group">
-                <input
-                  type="submit"
-                  value="Send Message"
-                  class="btn btn-primary py-3 px-5"
-                />
-              </div>
-            </form>
-          </div>
-
-          <div class="col-md-6 d-flex">
-            <div
-              class="img"
-              style="background-image: url(images/v1.png)"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About</h2>
-              <p>
-                Full-stack web developer based in Dubai, UAE — specialising in
-                Laravel, PHP, and Vue.js. Passionate about building clean,
-                scalable applications that make a real difference.
-              </p>
-              <ul
-                class="ftco-footer-social list-unstyled float-md-left float-lft mt-5"
-              >
-                <li class="ftco-animate">
-                  <a href="https://www.linkedin.com/in/vivek-krishnan" target="_blank" rel="noopener noreferrer"><span class="icon-linkedin"></span></a>
-                </li>
-                <li class="ftco-animate">
-                  <a href="https://github.com/vivek-krishnan" target="_blank" rel="noopener noreferrer"><span class="icon-github"></span></a>
-                </li>
-                <li class="ftco-animate">
-                  <a href="https://wa.me/971547481288" target="_blank" rel="noopener noreferrer"><span class="icon-whatsapp"></span></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Quick Links</h2>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#home-section"><span class="icon-long-arrow-right mr-2"></span>Home</a>
-                </li>
-                <li>
-                  <a href="#about-section"><span class="icon-long-arrow-right mr-2"></span>About</a>
-                </li>
-                <li>
-                  <a href="#resume-section"><span class="icon-long-arrow-right mr-2"></span>Resume</a>
-                </li>
-                <li>
-                  <a href="#projects-section"><span class="icon-long-arrow-right mr-2"></span>Projects</a>
-                </li>
-                <li>
-                  <a href="#blog-section"><span class="icon-long-arrow-right mr-2"></span>Blog</a>
-                </li>
-                <li>
-                  <a href="#contact-section"><span class="icon-long-arrow-right mr-2"></span>Contact</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Services</h2>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Web Development</a>
-                </li>
-                <li>
-                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Laravel Development</a>
-                </li>
-                <li>
-                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>CMS Development</a>
-                </li>
-                <li>
-                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>API Integration</a>
-                </li>
-                <li>
-                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>CRM Solutions</a>
-                </li>
-                <li>
-                  <a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Ecommerce</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Get In Touch</h2>
-              <div class="block-23 mb-3">
-                <ul>
-                  <li>
-                    <span class="icon icon-map-marker"></span>
-                    <span class="text">Dubai, United Arab Emirates</span>
-                  </li>
-                  <li>
-                    <a href="tel:+971547481288">
-                      <span class="icon icon-phone"></span>
-                      <span class="text">+971-547-481-288</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="mailto:viveknair97k@gmail.com">
-                      <span class="icon icon-envelope"></span>
-                      <span class="text">viveknair97k@gmail.com</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <p>
-              Copyright &copy;
-              <script>document.write(new Date().getFullYear());</script>
-              Vivek Krishnan. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
     <!-- WhatsApp Floating Button -->
     <a
       href="https://wa.me/+971547481288?text=Hello%20Vivek%2C%20I%20visited%20your%20portfolio%20and%20liked%20your%20work.%20I'm%20looking%20for%20a%20Laravel%20developer%20for%20a%20project.%20Let's%20connect%20and%20discuss%20the%20details."
@@ -2132,6 +2244,12 @@
       </svg>
     </div>
 
+    <!-- ===== BACK-TO-TOP ===== -->
+    <button id="rocket-btn" class="to-top" type="button" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- ===== /BACK-TO-TOP ===== -->
+
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -2146,6 +2264,12 @@
     <script src="js/scrollax.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/animations-rich.js"></script>
+    <script src="js/enhance.js"></script>
+    <script src="js/contact.js"></script>
+    <!-- Ask my AI: set data-endpoint to the deployed Worker URL, e.g.
+         https://ask-vivek-ai.<your-subdomain>.workers.dev/chat (see ask-ai-worker/README.md).
+         Left empty, the chat answers from its built-in FAQ. -->
+    <script src="js/ask-ai.js" data-endpoint=""></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
     <!-- ===== TYPED HERO ANIMATION ===== -->
     <script>
@@ -2156,7 +2280,8 @@
         strings: [
           'Full Stack Developer',
           'Laravel Developer',
-          'PHP Developer',
+          'Laravel &amp; AI Developer',
+          'Vue.js Developer',
         ],
         typeSpeed: 60,
         backSpeed: 35,
@@ -2175,6 +2300,7 @@
       (function () {
         var badge  = document.getElementById('visitor-badge');
         var numEl  = document.getElementById('vb-num');
+        if (!badge || !numEl) return;
         var VISIT_KEY = 'vk_has_visited';
         var LOCAL_KEY = 'vk_portfolio_visits';
         var BASE_URL  = 'https://api.countapi.xyz';
@@ -2227,65 +2353,6 @@
     </script>
     <!-- ===== /VISITOR COUNTER ===== -->
 
-    <!-- ===== ROCKET BACK-TO-TOP ===== -->
-    <div id="rocket-btn" role="button" aria-label="Back to top" tabindex="0">
-      <div class="rocket-wrap">
-        <svg class="rocket-svg" viewBox="0 0 44 68" xmlns="http://www.w3.org/2000/svg">
-          <!-- body -->
-          <path class="r-body" d="M22 3 C32 12 34 34 22 50 C10 34 12 12 22 3Z"/>
-          <!-- nose shimmer -->
-          <path class="r-shine" d="M22 3 C26 9 27 18 24 26 C22 20 20 11 22 3Z" opacity="0.35"/>
-          <!-- porthole -->
-          <circle class="r-window" cx="22" cy="21" r="6"/>
-          <circle class="r-window-glare" cx="24" cy="18" r="2"/>
-          <!-- left fin -->
-          <path class="r-fin" d="M12 42 L4 58 L16 50Z"/>
-          <!-- right fin -->
-          <path class="r-fin" d="M32 42 L40 58 L28 50Z"/>
-          <!-- centre nozzle -->
-          <rect class="r-nozzle" x="18" y="49" width="8" height="6" rx="2"/>
-        </svg>
-        <div class="rocket-flames">
-          <span class="flame f1"></span>
-          <span class="flame f2"></span>
-          <span class="flame f3"></span>
-        </div>
-        <div class="rocket-exhaust"></div>
-      </div>
-    </div>
-    <!-- ===== /ROCKET BACK-TO-TOP ===== -->
-
-    <script>
-    /* ===== ROCKET SCROLL-TO-TOP LOGIC ===== */
-    (function () {
-      var btn = document.getElementById('rocket-btn');
-      if (!btn) return;
-
-      /* show / hide on scroll */
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 400) {
-          btn.classList.add('visible');
-        } else {
-          btn.classList.remove('visible');
-        }
-      }, { passive: true });
-
-      /* launch & scroll to top */
-      function launch() {
-        btn.classList.add('launching');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(function () {
-          btn.classList.remove('launching', 'visible');
-        }, 700);
-      }
-
-      btn.addEventListener('click', launch);
-      btn.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); launch(); }
-      });
-    })();
-    /* ===== /ROCKET SCROLL-TO-TOP LOGIC ===== */
-    </script>
 
     <script>
     /* ===== GALAXY BACKGROUND ANIMATION ===== */

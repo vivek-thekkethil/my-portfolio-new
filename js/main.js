@@ -74,16 +74,22 @@
 	    event.preventDefault();
 
 	    var href = $.attr(this, 'href');
+	    var $menu = $('#ftco-nav');
+	    var scrollToTarget = function () {
+	      $('html, body').stop().animate({
+	          scrollTop: $(href).offset().top - 70
+	      }, 500);
+	    };
 
-	    // Close mobile navbar when a link is clicked
-	    $('#ftco-nav').collapse('hide');
 	    $('.js-fh5co-nav-toggle').removeClass('active');
 
-	    $('html, body').animate({
-	        scrollTop: $($.attr(this, 'href')).offset().top - 70
-	    }, 500, function() {
-	    	// window.location.hash = href;
-	    });
+	    // On phones the open menu pushes the page down, so measure the target
+	    // only after the menu has finished closing
+	    if ($menu.hasClass('show')) {
+	      $menu.one('hidden.bs.collapse', scrollToTarget).collapse('hide');
+	    } else {
+	      scrollToTarget();
+	    }
 		});
 
 	};
@@ -95,16 +101,19 @@
 		// On mobile, touchDrag is disabled so Owl's non-passive touchstart listener
 		// does not block native vertical page scrolling. Autoplay still works.
 		var isMobile = $(window).width() < 992;
+		// A single hero slide shouldn't loop, autoplay, show dots or be draggable
+		var multiSlide = $('.home-slider .slider-item').length > 1;
 		$('.home-slider').owlCarousel({
-	    loop:true,
-	    autoplay: true,
+	    loop: multiSlide,
+	    autoplay: multiSlide,
+	    dots: multiSlide,
 	    margin:0,
 	    animateOut: 'fadeOut',
 	    animateIn: 'fadeIn',
 	    nav:false,
 	    autoplayHoverPause: false,
-	    touchDrag: !isMobile,
-	    mouseDrag: true,
+	    touchDrag: multiSlide && !isMobile,
+	    mouseDrag: multiSlide,
 	    items: 1,
 	    navText : ["<span class='ion-md-arrow-back'></span>","<span class='ion-chevron-right'></span>"],
 	    responsive:{

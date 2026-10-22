@@ -1,0 +1,11 @@
+name = "ask-vivek-ai"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Sites allowed to call the chat endpoint (comma-separated, no trailing slash).
+ALLOWED_ORIGINS = "https://vivek-thekkethil.github.io,http://localhost:8123"
+
+# The API key is a secret, not a var. Set it once with:
+#   npx wrangler secret put ANTHROPIC_API_KEY

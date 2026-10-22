@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Coding Agents in 2026: From Autocomplete to Teammate — Vivek Krishnan</title>
+    <meta name="description" content="AI coding tools have moved from autocomplete to agents that plan, edit and test. What changed in 2026, where the risks are, and the habits that make agents useful." />
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/article.css" />
+  </head>
+  <body>
+    <div id="read-progress" aria-hidden="true"></div>
+
+    <header class="a-nav">
+      <a class="brand" href="../index.html">Vivek</a>
+      <a class="back" href="../index.html#blog-section"><i class="fas fa-arrow-left"></i> All articles</a>
+    </header>
+
+    <article class="a-wrap">
+      <span class="a-cat"><i class="fas fa-robot"></i> AI Agents</span>
+      <h1>AI Coding Agents in 2026: From Autocomplete to Teammate</h1>
+      <div class="a-meta">
+        <span class="author"><span class="avatar">V</span> Vivek Krishnan</span>
+        <span class="dot"></span>
+        <span>Oct 8, 2026</span>
+        <span class="dot"></span>
+        <span>6 min read</span>
+      </div>
+      <img class="a-cover" src="../images/blog-coding-agents.svg" width="1200" height="630" alt="A terminal where an AI agent has planned, edited files and run tests" />
+
+      <div class="a-body">
+        <p class="a-lead">
+          Two years ago, "AI for developers" mostly meant smarter autocomplete.
+          In 2026 it means agents: tools that read your codebase, plan a change,
+          edit many files, run the tests and come back with a diff for you to
+          review. The job hasn't disappeared, but it has changed shape.
+        </p>
+
+        <h2>What actually changed</h2>
+        <p>
+          Anthropic's <em>2026 Agentic Coding Trends Report</em> puts it in one
+          line: software development is shifting from writing code to
+          <strong>orchestrating agents that write code</strong>. Tools like
+          Claude Code, Cursor and agent modes in mainstream editors now handle
+          multi-step tasks such as "add leave approvals with tests" end to end,
+          and more of that work runs in isolated containers or in the
+          background.
+        </p>
+        <p>The report also points to trends I see on real projects:</p>
+        <ul>
+          <li><strong>Multi-agent workflows:</strong> one agent plans, others implement or review in parallel.</li>
+          <li><strong>New human-AI collaboration patterns:</strong> developers spend more time specifying and reviewing, and less time typing.</li>
+          <li><strong>Agentic coding beyond engineering:</strong> operations, sales and HR teams build small internal tools themselves.</li>
+        </ul>
+
+        <h2>The catch: more code isn't more software</h2>
+        <p>
+          A recurring theme in 2026 reporting is that agents increase the
+          <em>volume</em> of code far more easily than they increase the number
+          of features that actually ship and work. When producing a diff is
+          cheap, the bottleneck moves to the parts that still need a human:
+          deciding what to build, reviewing changes, testing edge cases and
+          owning production. Teams that don't adjust end up with bigger pull
+          requests, slower reviews and more subtle bugs.
+        </p>
+        <p>
+          That's why the conversation has shifted to <strong>bounded
+          autonomy</strong>: clear limits on what an agent may do on its own,
+          an escalation path to a human, and an audit trail of what it changed.
+        </p>
+
+        <h2>Habits that make agents genuinely useful</h2>
+        <p>
+          I used Claude for AI-assisted development while building
+          <a href="https://hr.hrhub.ae/" target="_blank" rel="noopener">HRHub</a>,
+          a Next.js HR management system. These are the habits that consistently
+          made the difference between a helpful teammate and a cleanup job:
+        </p>
+        <ol>
+          <li>
+            <strong>Give it context before tasks.</strong> A short project file
+            describing the stack, folder conventions, how to run tests and what
+            not to touch saves more time than any clever prompt. In Laravel,
+            <a href="laravel-ai-sdk-boost-mcp.html">Boost</a> does much of this
+            for you.
+          </li>
+          <li>
+            <strong>Make tasks small and verifiable.</strong> "Add the visa
+            expiry widget with a test" works. "Build the dashboard" produces a
+            sprawling diff that nobody wants to review.
+          </li>
+          <li>
+            <strong>Let tests be the contract.</strong> Ask for the test first
+            or alongside the change, then run it yourself. An agent that says
+            "done" isn't evidence. A green test suite is.
+          </li>
+          <li>
+            <strong>Read every diff.</strong> Look for changed behaviour, missing
+            permission checks and anything touching authentication, payments or
+            personal data, which matters a lot in HR software.
+          </li>
+          <li>
+            <strong>Keep secrets out of reach.</strong> Use environment files the
+            agent can't print, test credentials only, and no production database
+            access.
+          </li>
+          <li>
+            <strong>Lean on conventions.</strong> Opinionated frameworks help
+            agents as much as humans: predictable folders and patterns mean fewer
+            wrong guesses.
+          </li>
+        </ol>
+
+        <blockquote>
+          Frameworks that lean into conventions and structure do well with LLMs.
+          <cite>&mdash; Taylor Otwell, creator of Laravel</cite>
+        </blockquote>
+
+        <h2>The skills that matter more now</h2>
+        <p>
+          If agents write more of the code, the valuable skills move up a level:
+        </p>
+        <ul>
+          <li><strong>System design:</strong> knowing where a feature belongs and what it will break.</li>
+          <li><strong>Specification:</strong> turning a vague business request into a precise, testable task.</li>
+          <li><strong>Code review:</strong> quickly spotting what is wrong, not just what is missing.</li>
+          <li><strong>Domain knowledge:</strong> understanding real-estate leads, payroll or visa rules well enough to notice when the code is plausible but wrong.</li>
+        </ul>
+
+        <div class="a-callout">
+          <p>
+            <strong>My take:</strong> agents haven't replaced developers. They
+            have replaced the parts of the job that were never the hard part.
+            The developers getting the most out of 2026 treat the agent like a
+            fast, eager junior teammate: clear instructions, small tasks, and
+            always a review before merge.
+          </p>
+        </div>
+      </div>
+
+      <div class="a-sources">
+        <h3>Sources</h3>
+        <ol>
+          <li><a href="https://resources.anthropic.com/2026-agentic-coding-trends-report" target="_blank" rel="noopener">2026 Agentic Coding Trends Report — Anthropic</a></li>
+          <li><a href="https://laravel.com/blog/laravel-ai-sdk-boost-or-mcp-which-tool-do-you-need" target="_blank" rel="noopener">Laravel AI SDK, Boost, or MCP: Which Tool Do You Need? — Laravel Blog</a></li>
+          <li><a href="https://skillzbench.com/insights/the-complete-guide-to-coding-agents-in-2026" target="_blank" rel="noopener">Coding Agents in 2026: Costs, Security &amp; How to Choose — SkillzBench</a></li>
+        </ol>
+      </div>
+
+      <div class="a-cta">
+        <h3>Need a developer who ships with AI, safely?</h3>
+        <p>I build Laravel, Vue.js and Next.js products using modern AI-assisted workflows, with tests and reviews built in.</p>
+        <a class="a-btn" href="../index.html#contact-section"><i class="fas fa-paper-plane"></i> Let's talk</a>
+      </div>
+
+      <div class="a-more">
+        <h3>Keep reading</h3>
+        <div class="a-more-grid">
+          <a href="laravel-ai-sdk-boost-mcp.html"><span>AI &middot; Laravel</span>Laravel AI SDK, Boost &amp; MCP: The New AI Toolkit for Laravel Developers</a>
+          <a href="mcp-open-standard-ai-agents.html"><span>AI Standards</span>MCP in 2026: The Open Standard Connecting AI Agents to Business Software</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="a-foot">&copy; 2026 Vivek Krishnan &middot; <a href="../index.html">Back to portfolio</a></footer>
+    <script src="../js/article.js"></script>
+  </body>
+</html>

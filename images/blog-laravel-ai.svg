@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Laravel AI SDK, Boost and MCP">
+  <defs>
+    <radialGradient id="bg" cx="70%" cy="30%" r="90%">
+      <stop offset="0" stop-color="#3a0d1a"/>
+      <stop offset=".55" stop-color="#140a26"/>
+      <stop offset="1" stop-color="#05040f"/>
+    </radialGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff5a4e"/>
+      <stop offset="1" stop-color="#ffbd39"/>
+    </linearGradient>
+    <linearGradient id="ai" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g opacity=".08" stroke="#fff">
+    <path d="M0 105H1200M0 210H1200M0 315H1200M0 420H1200M0 525H1200M150 0V630M300 0V630M450 0V630M600 0V630M750 0V630M900 0V630M1050 0V630"/>
+  </g>
+  <circle cx="600" cy="300" r="170" fill="url(#red)" opacity=".35" filter="url(#glow)"/>
+
+  <!-- three stacked layers: SDK / Boost / MCP -->
+  <g transform="translate(600 300)" font-family="Poppins, Segoe UI, Arial, sans-serif" font-weight="700" text-anchor="middle">
+    <g transform="translate(0 -95)">
+      <rect x="-230" y="-42" width="460" height="84" rx="22" fill="#1a1030" stroke="url(#red)" stroke-width="3"/>
+      <text y="12" font-size="34" fill="#fff">AI SDK</text>
+    </g>
+    <g>
+      <rect x="-230" y="-42" width="460" height="84" rx="22" fill="#1a1030" stroke="url(#ai)" stroke-width="3"/>
+      <text y="12" font-size="34" fill="#fff">Boost</text>
+    </g>
+    <g transform="translate(0 95)">
+      <rect x="-230" y="-42" width="460" height="84" rx="22" fill="#1a1030" stroke="#ffbd39" stroke-width="3"/>
+      <text y="12" font-size="34" fill="#fff">MCP</text>
+    </g>
+  </g>
+
+  <!-- sparkle -->
+  <g transform="translate(870 140)" fill="url(#ai)">
+    <path d="M0-46C6-14 14-6 46 0 14 6 6 14 0 46-6 14-14 6-46 0-14-6-6-14 0-46Z"/>
+    <path transform="translate(54 58) scale(.42)" d="M0-46C6-14 14-6 46 0 14 6 6 14 0 46-6 14-14 6-46 0-14-6-6-14 0-46Z"/>
+  </g>
+  <!-- code brackets -->
+  <g fill="none" stroke="url(#red)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".9">
+    <path d="M300 230l-70 70 70 70"/>
+    <path d="M900 400l70 70-70 70" opacity=".5"/>
+  </g>
+</svg>

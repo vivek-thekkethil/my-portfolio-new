@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MCP in 2026: Connecting AI Agents to Business Software — Vivek Krishnan</title>
+    <meta name="description" content="What the Model Context Protocol is, why it became the standard way to connect AI agents to software, and what it means for CRM and HR products." />
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/article.css" />
+  </head>
+  <body>
+    <div id="read-progress" aria-hidden="true"></div>
+
+    <header class="a-nav">
+      <a class="brand" href="../index.html">Vivek</a>
+      <a class="back" href="../index.html#blog-section"><i class="fas fa-arrow-left"></i> All articles</a>
+    </header>
+
+    <article class="a-wrap">
+      <span class="a-cat"><i class="fas fa-network-wired"></i> AI Standards</span>
+      <h1>MCP in 2026: The Open Standard Connecting AI Agents to Business Software</h1>
+      <div class="a-meta">
+        <span class="author"><span class="avatar">V</span> Vivek Krishnan</span>
+        <span class="dot"></span>
+        <span>Oct 14, 2026</span>
+        <span class="dot"></span>
+        <span>6 min read</span>
+      </div>
+      <img class="a-cover" src="../images/blog-mcp.svg" width="1200" height="630" alt="An MCP hub connected to CRM, HR, database, docs, email and API nodes" />
+
+      <div class="a-body">
+        <p class="a-lead">
+          AI assistants are only as useful as what they can reach. A model that
+          can't see your CRM, your HR records or your ticket queue can only give
+          generic advice. The <strong>Model Context Protocol (MCP)</strong> is
+          the open standard that fixes this, and in 2026 it has become the
+          default way AI agents plug into real software.
+        </p>
+
+        <h2>What MCP actually is</h2>
+        <p>
+          Anthropic introduced MCP in November 2024 as an open protocol for
+          connecting AI applications to external tools and data. The common
+          analogy is <strong>USB-C for AI</strong>: instead of building a custom
+          integration for every pairing of AI app and service, you build one MCP
+          server, and any MCP-compatible client can use it.
+        </p>
+        <p>An MCP server exposes three kinds of things:</p>
+        <ul>
+          <li><strong>Tools</strong> &mdash; actions the AI can take, such as <code>create_invoice</code> or <code>search_leads</code>.</li>
+          <li><strong>Resources</strong> &mdash; content the AI can read as context: documents, records, configuration.</li>
+          <li><strong>Prompts</strong> &mdash; reusable templates a user can pick instead of typing the same instructions again.</li>
+        </ul>
+
+        <h2>Why it won</h2>
+        <p>
+          The answer is network effects. When Anthropic moved MCP to a neutral
+          foundation in December 2025, it reported more than
+          <strong>10,000 active public MCP servers</strong> and adoption in
+          products including ChatGPT, Cursor, Gemini and VS Code. Once the major
+          AI clients spoke the same protocol, building a server became the
+          obvious move for any software vendor that wanted its product to show
+          up inside AI tools.
+        </p>
+        <p>
+          Governance mattered too. On <strong>9 December 2025</strong>, MCP was
+          donated to the <strong>Agentic AI Foundation</strong> under the Linux
+          Foundation, co-founded by Anthropic, Block and OpenAI. OpenAI's
+          AGENTS.md and Block's goose agent framework joined at the same time.
+          A protocol no single vendor controls is much easier for enterprises to
+          bet on.
+        </p>
+
+        <h2>Where enterprise adoption really stands</h2>
+        <p>
+          The 2026 story is the move from experiments to production. The
+          protocol's roadmap puts enterprise readiness, including OAuth 2.1
+          authorisation, near the top of its priorities. Be careful with headline
+          adoption numbers, though. Surveys quoted this year range from about
+          40% to almost 80% of teams running MCP in production, depending on who
+          was asked and how "production" was defined. The direction is clear;
+          the exact figure is not.
+        </p>
+        <p>
+          MCP has critics as well. Every tool definition is sent to the model on
+          every message, so a server with dozens of tools eats into the context
+          window and raises token costs. Some teams have pulled back for that
+          reason. The practical lesson is to design small, focused servers
+          rather than to skip MCP.
+        </p>
+
+        <h2>What it means for CRM and HR software</h2>
+        <p>
+          This is where it gets interesting for the kind of systems I build. An
+          MCP server turns your product into something users can work with from
+          inside the AI assistant they already use:
+        </p>
+        <ul>
+          <li>"Which leads from last week haven't had a follow-up yet?"</li>
+          <li>"Create a viewing for the Marina apartment on Thursday at 4 pm."</li>
+          <li>"How many employee visas expire in the next 90 days?"</li>
+          <li>"Draft a leave-approval summary for this month."</li>
+        </ul>
+        <p>
+          None of these need a new screen in your app. They need well-designed
+          tools that call the same validated business logic your UI already
+          uses.
+        </p>
+
+        <h2>A checklist for your first MCP server</h2>
+        <ol>
+          <li><strong>Start read-only.</strong> Expose search and reporting tools first, and add write actions once you trust the setup.</li>
+          <li><strong>Reuse your domain logic.</strong> Tools should call the same services and validation as your controllers, never raw SQL.</li>
+          <li><strong>Respect permissions.</strong> Authenticate with OAuth or tokens, and scope every tool to what that user is allowed to see.</li>
+          <li><strong>Keep confirmation for destructive actions.</strong> Deleting records or sending payments should need an explicit human yes.</li>
+          <li><strong>Log every call.</strong> Keep an audit trail of which tool ran, for whom, and with what input.</li>
+          <li><strong>Stay small.</strong> A handful of well-described tools beats fifty vague ones.</li>
+        </ol>
+
+        <div class="a-callout">
+          <p>
+            <strong>Building on Laravel?</strong> Laravel now has a first-party
+            package for MCP servers, with tools, resources and prompts as plain
+            PHP classes. I cover it, with code, in
+            <a href="laravel-ai-sdk-boost-mcp.html">Laravel AI SDK, Boost &amp; MCP</a>.
+          </p>
+        </div>
+
+        <h2>The bottom line</h2>
+        <p>
+          In 2026, an MCP server is starting to play the role a public REST API
+          played a decade ago: the thing that makes your product part of a wider
+          ecosystem. For business software, the opportunity is less about AI
+          gimmicks and more about letting people get work done in fewer clicks,
+          from wherever they already are.
+        </p>
+      </div>
+
+      <div class="a-sources">
+        <h3>Sources</h3>
+        <ol>
+          <li><a href="https://anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation" target="_blank" rel="noopener">Donating the Model Context Protocol and establishing the Agentic AI Foundation — Anthropic</a></li>
+          <li><a href="https://linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation" target="_blank" rel="noopener">Linux Foundation announces the formation of the Agentic AI Foundation</a></li>
+          <li><a href="https://tyk.io/learning-center/is-mcp-dead-in-2026-why-enterprises-still-need-mcp/" target="_blank" rel="noopener">Is MCP dead in 2026? Why enterprises still need MCP — Tyk</a></li>
+          <li><a href="https://forkast.news/mcp-locked-in-its-architecture-today-now-the-hard-part-enterprise-adoption-at-scale/" target="_blank" rel="noopener">MCP locked in its architecture; now the hard part, enterprise adoption at scale — Forkast</a></li>
+          <li><a href="https://laravel.com/framework/docs/mcp" target="_blank" rel="noopener">Laravel MCP documentation</a></li>
+        </ol>
+      </div>
+
+      <div class="a-cta">
+        <h3>Want your product to work inside AI assistants?</h3>
+        <p>I design and build secure MCP integrations for CRM, HR and other business platforms.</p>
+        <a class="a-btn" href="../index.html#contact-section"><i class="fas fa-paper-plane"></i> Let's talk</a>
+      </div>
+
+      <div class="a-more">
+        <h3>Keep reading</h3>
+        <div class="a-more-grid">
+          <a href="laravel-ai-sdk-boost-mcp.html"><span>AI &middot; Laravel</span>Laravel AI SDK, Boost &amp; MCP: The New AI Toolkit for Laravel Developers</a>
+          <a href="ai-coding-agents-2026.html"><span>AI Agents</span>AI Coding Agents in 2026: From Autocomplete to Teammate</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="a-foot">&copy; 2026 Vivek Krishnan &middot; <a href="../index.html">Back to portfolio</a></footer>
+    <script src="../js/article.js"></script>
+  </body>
+</html>
