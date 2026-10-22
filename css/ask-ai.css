@@ -2,52 +2,199 @@
    ASK MY AI — chat launcher, nudge and panel
    ============================================== */
 
-/* ----- launcher (bottom-left, away from WhatsApp) ----- */
+/* ----- launcher: a little Vivek who walks in from the left
+         (bottom-left, away from WhatsApp) ----- */
 .askai-launcher {
   position: fixed;
   left: 28px;
-  bottom: 40px;
-  z-index: 9996;
+  bottom: 22px;
+  z-index: 9997;               /* above the speech bubble so the waving hand shows */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  translate: -260px 0;
+  transform-origin: left bottom;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s;
+}
+.askai-launcher.is-walking { animation: buddyWalkIn 2.6s cubic-bezier(0.3, 0.1, 0.55, 1) both; }
+.askai-launcher.is-arrived { translate: 0 0; }
+.askai-launcher:focus,
+.askai-launcher:focus-visible { outline: none; }
+/* keyboard focus rings the label pill instead of boxing the whole character */
+.askai-launcher:focus-visible .askai-launcher-text { box-shadow: 0 0 0 2px #22d3ee, 0 10px 26px rgba(0, 0, 0, 0.45); }
+.askai-launcher.is-hidden { opacity: 0; transform: scale(0.9); pointer-events: none; }
+@keyframes buddyWalkIn {
+  from { translate: -260px 0; }
+  to   { translate: 0 0; }
+}
+
+/* the character: photo head on a hoodie-and-jeans body */
+.askai-buddy {
+  position: relative;
+  display: block;
+  width: 64px;
+  height: 109px;
+}
+.askai-buddy-head {
+  position: absolute;
+  left: 9px;               /* centres the neck over the body */
+  top: 0;
+  z-index: 2;
+  width: 48px;
+  height: auto;
+  /* pivot on the base of the neck (hidden inside the hood collar), so
+     every tilt, turn and bounce keeps the neck seated in the hoodie */
+  transform-origin: 47.7% 96%;
+  /* turning to look (set by js/ask-ai.js, or by the idle look-around);
+     the keyframe animations below use the separate rotate/translate
+     properties, so they stack on top of this */
+  transform: perspective(240px) rotateY(var(--look-x)) rotateX(var(--look-y));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+}
+@property --look-x { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@property --look-y { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.askai-buddy-body {
+  position: absolute;
+  left: 0;
+  top: 45px;              /* hood collar wraps the faded neck of the head image */
+  width: 64px;
+  height: 64px;
+  overflow: visible;
+}
+.askai-buddy-front { z-index: 3; }
+.askai-buddy-body g { transform-box: fill-box; }
+.askai-buddy-body .b-leg { transform-origin: 50% 0; }
+.askai-buddy-body .b-arm { transform-origin: 50% 12%; }
+.askai-buddy::before {         /* soft AI-coloured glow so he stands out on the dark page */
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 110px;
+  height: 110px;
+  margin: -55px 0 0 -55px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(167, 139, 250, 0.32), rgba(34, 211, 238, 0.1) 45%, transparent 70%);
+  pointer-events: none;
+}
+.askai-buddy::after {          /* ground shadow */
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 46px;
+  height: 8px;
+  margin-left: -23px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(0, 0, 0, 0.55), transparent 70%);
+}
+
+/* walking: legs and arms swing in opposition, body bobs each step */
+.is-walking .askai-buddy { animation: buddyStep 0.44s ease-in-out infinite alternate; }
+.is-walking .askai-buddy-head { animation: buddyBobble 0.44s ease-in-out 0.08s infinite alternate; }
+.is-walking .b-leg-1 { animation: buddySwing 0.44s ease-in-out infinite alternate; }
+.is-walking .b-leg-2 { animation: buddySwing 0.44s ease-in-out infinite alternate-reverse; }
+.is-walking .b-arm-1 { animation: buddySwing 0.44s ease-in-out infinite alternate-reverse; }
+.is-walking .b-arm-2 { animation: buddySwing 0.44s ease-in-out infinite alternate; }
+@keyframes buddySwing {
+  from { transform: rotate(24deg); }
+  to   { transform: rotate(-24deg); }
+}
+@keyframes buddyStep {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-4px); }
+}
+/* bobble-head: lags a beat behind each step */
+@keyframes buddyBobble {
+  from { rotate: -6deg; translate: 0 1px; }
+  to   { rotate: 6deg;  translate: 0 -2px; }
+}
+
+/* arrived: wave hello, then idle with a gentle breath */
+.is-arrived .askai-buddy { animation: buddyIdle 3.2s ease-in-out infinite; }
+/* idle face: looks around and tilts curiously; once the visitor moves the
+   pointer, js/ask-ai.js adds .is-tracking and he looks at the cursor instead */
+.is-arrived .askai-buddy-head { animation: buddyHeadIdle 6s ease-in-out infinite, buddyLookAround 11s ease-in-out infinite; }
+.is-arrived.is-tracking .askai-buddy-head { animation: buddyHeadIdle 6s ease-in-out infinite; }
+.is-waving .askai-buddy-head,
+.is-waving.is-tracking .askai-buddy-head { animation: buddyNod 1.8s ease-in-out; }
+.is-waving .b-arm-2,
+.askai-launcher.is-arrived:hover .b-arm-2 { animation: buddyWave 1.8s ease-in-out; }
+.askai-launcher.is-arrived:hover .askai-buddy { animation: buddyHop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes buddyIdle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+@keyframes buddyHeadIdle {
+  0%, 70%, 100% { rotate: 0deg; }
+  78%           { rotate: -7deg; }
+  88%           { rotate: 3deg; }
+}
+@keyframes buddyLookAround {
+  0%, 18%, 100% { --look-x: 0deg;   --look-y: 0deg; }
+  26%, 40%      { --look-x: 22deg;  --look-y: 4deg; }
+  50%, 58%      { --look-x: 0deg;   --look-y: -6deg; }
+  68%, 82%      { --look-x: -22deg; --look-y: 3deg; }
+}
+/* says hi: friendly nod with a tilt toward the waving hand */
+@keyframes buddyNod {
+  0%, 100% { rotate: 0deg;  translate: 0 0; }
+  20%      { rotate: 6deg;  translate: 0 1.5px; }
+  38%      { rotate: 4deg;  translate: 0 -1px; }
+  55%      { rotate: 7deg;  translate: 0 1.5px; }
+  75%      { rotate: 3deg;  translate: 0 0; }
+}
+@keyframes buddyWave {
+  0%   { transform: rotate(0); }
+  18%  { transform: rotate(-140deg); }   /* hand stays clear of the head */
+  32%  { transform: rotate(-108deg); }
+  46%  { transform: rotate(-140deg); }
+  60%  { transform: rotate(-108deg); }
+  76%  { transform: rotate(-135deg); }
+  100% { transform: rotate(0); }
+}
+@keyframes buddyHop {
+  0%, 100% { transform: translateY(0); }
+  40%      { transform: translateY(-8px); }
+}
+
+/* "Ask my AI" label pops in once he has arrived */
+.askai-launcher-text {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 7px 20px 7px 7px;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 5px 12px;
   border-radius: 999px;
   border: 1px solid transparent;
   background:
     linear-gradient(#120c2c, #120c2c) padding-box,
     conic-gradient(from var(--ai-angle), #a78bfa, #22d3ee, #ffbd39, #a78bfa) border-box;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45), 0 0 26px rgba(167, 139, 250, 0.25);
-  animation: aiBorder 5s linear infinite, askaiIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s, box-shadow 0.3s;
+  white-space: nowrap;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 20px rgba(167, 139, 250, 0.25);
+  animation: aiBorder 5s linear infinite;
+  opacity: 0;
+  transform: translateY(6px) scale(0.85);
+  transition: opacity 0.3s, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.askai-launcher:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 34px rgba(34, 211, 238, 0.35); }
-.askai-launcher:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; }
-.askai-launcher.is-hidden { opacity: 0; transform: scale(0.9); pointer-events: none; }
-.askai-launcher-icon {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: #0b0820;
-  background: linear-gradient(135deg, #a78bfa, #22d3ee);
-}
-@keyframes askaiIn {
-  from { opacity: 0; transform: translateY(20px) scale(0.9); }
-  to   { opacity: 1; transform: none; }
-}
+.askai-launcher-text i { color: #22d3ee; font-size: 11px; }
+.is-arrived .askai-launcher-text { opacity: 1; transform: none; }
+.askai-launcher.is-arrived:hover .askai-launcher-text { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 211, 238, 0.4); }
 
-/* ----- first-visit nudge ----- */
+/* ----- greeting speech bubble, beside his face ----- */
 .askai-nudge {
   position: fixed;
-  left: 28px;
-  bottom: 100px;
+  left: 98px;
+  bottom: 106px;
   z-index: 9996;
   max-width: 250px;
   padding: 14px 34px 14px 16px;
@@ -66,6 +213,15 @@
   transition: opacity 0.35s, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .askai-nudge.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.askai-nudge::before {         /* tail pointing at his face */
+  content: '';
+  position: absolute;
+  left: -7px;
+  bottom: 10px;
+  border: 8px solid transparent;
+  border-right-color: #fff;
+  border-left: 0;
+}
 .askai-nudge strong { display: block; margin-bottom: 2px; }
 .askai-nudge-close {
   position: absolute;
@@ -293,8 +449,8 @@
 
 /* phones: full-screen sheet */
 @media (max-width: 575.98px) {
-  .askai-launcher { left: 16px; bottom: 40px; padding-right: 16px; font-size: 13px; }
-  .askai-nudge { left: 16px; }
+  .askai-launcher { left: 12px; bottom: 18px; scale: 0.82; }
+  .askai-nudge { left: 78px; right: 12px; bottom: 88px; max-width: 230px; font-size: 13px; }
   .askai-panel {
     left: 0;
     right: 0;
@@ -309,6 +465,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .askai-launcher, .askai-msg, .askai-dots i { animation: none !important; }
+  .askai-launcher, .askai-buddy, .askai-buddy *, .askai-msg, .askai-dots i { animation: none !important; }
   .askai-panel, .askai-nudge { transition: none; }
 }

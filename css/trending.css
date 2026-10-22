@@ -1,0 +1,197 @@
+/* ==============================================
+   TRENDING MOTION — tech marquee, border beam,
+   scroll-driven reveals, word-by-word about text,
+   heading scramble, magnetic buttons.
+   Behaviour lives in js/trending.js.
+   ============================================== */
+
+@property --beam-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ----- Tech marquee (two skewed ribbons, speed follows scroll) ----- */
+.tech-marquee {
+  position: relative;
+  z-index: 2;
+  padding: 70px 0 30px;
+  overflow: hidden;
+}
+.tm-row {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  padding: 16px 0;
+  transform: rotate(-2.2deg) scale(1.04);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 10px 40px rgba(255, 112, 67, 0.25);
+  -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.tm-row-alt {
+  margin-top: -6px;
+  transform: rotate(1.6deg) scale(1.04);
+  background: rgba(14, 10, 36, 0.92);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: none;
+}
+.tm-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 46px;
+  padding-right: 46px;
+  will-change: transform;
+}
+.tm-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #120a2a;
+}
+.tm-track span i { font-size: 20px; }
+.tm-track span::after {
+  content: '\2726';
+  margin-left: 34px;
+  font-size: 14px;
+  opacity: 0.55;
+}
+.tm-row-alt .tm-track span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.55);
+}
+.tm-row-alt .tm-track span i {
+  color: var(--ai-1);
+  -webkit-text-stroke: 0;
+}
+.tm-row-alt .tm-track span::after { color: var(--accent); -webkit-text-stroke: 0; }
+@media (max-width: 767.98px) {
+  .tech-marquee { padding: 40px 0 10px; }
+  .tm-row { padding: 11px 0; }
+  .tm-track { gap: 30px; padding-right: 30px; }
+  .tm-track span { font-size: 16px; }
+  .tm-track span::after { margin-left: 22px; }
+}
+
+/* ----- Border beam — a light that travels around project cards ----- */
+.proj-card::after {
+  transition: opacity 0.4s;
+}
+.proj-card:hover::after {
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg,
+    var(--accent) 40deg,
+    var(--ai-1) 90deg,
+    var(--ai-2) 130deg,
+    transparent 170deg,
+    transparent 360deg
+  ) border-box;
+  border-width: 2px;
+  animation: beamSpin 2.4s linear infinite;
+}
+@keyframes beamSpin {
+  to { --beam-angle: 360deg; }
+}
+
+/* ----- About paragraph lights up word by word as it scrolls in ----- */
+.tr-words .tr-w {
+  color: rgba(255, 255, 255, 0.16);
+  transition: color 0.35s ease, text-shadow 0.35s ease;
+}
+.tr-words .tr-w.is-lit { color: rgba(255, 255, 255, 0.88); }
+.tr-words .tr-w.is-key.is-lit {
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(255, 189, 57, 0.35);
+}
+
+/* ----- Heading scramble: the glyph is painted over the hidden real
+         letter, so the heading never re-wraps while decoding ----- */
+.tr-scramble .tr-glyph {
+  position: relative;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.tr-scramble .tr-glyph::after {
+  content: attr(data-g);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  color: var(--ai-2);
+  -webkit-text-fill-color: var(--ai-2);
+  opacity: 0.85;
+}
+
+/* ----- Magnetic buttons use the independent `translate` property,
+         so they compose with the existing hover transforms ----- */
+.tr-magnet { transition: translate 0.45s var(--ease-out); }
+.tr-magnet.is-pulling { transition: translate 0.12s linear; }
+
+/* ----- Scroll-driven animations (Chrome/Edge 115+, Safari 26+).
+         Everything here is extra polish; other browsers keep the
+         page exactly as before. ----- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    /* overflow:hidden turns these into scroll containers, so their
+       children track the outer element's named timeline instead of view() */
+    .proj-card { view-timeline: --tr-card block; }
+    #home-section { view-timeline: --tr-hero block; }
+    .img-about { view-timeline: --tr-about block; }
+
+    /* project screenshots wipe up out of the card like a curtain */
+    .proj-card .pc-img {
+      animation: trCurtain linear both;
+      animation-timeline: --tr-card;
+      animation-range: entry 0% cover 38%;
+    }
+    @keyframes trCurtain {
+      from { clip-path: inset(100% 0 0 0); scale: 1.3; }
+      to   { clip-path: inset(0 0 0 0);    scale: 1; }
+    }
+
+    /* hero portrait sinks back and softens as you scroll away */
+    .hero-visual {
+      animation: trHeroOut linear both;
+      animation-timeline: --tr-hero;
+      animation-range: exit 10% exit 100%;
+    }
+    @keyframes trHeroOut {
+      to { scale: 0.88; filter: blur(5px) saturate(0.6); opacity: 0.3; }
+    }
+
+    /* eyebrow rules grow out from the label */
+    .heading-section h1.big::before,
+    .heading-section h1.big::after {
+      animation: trRule linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+    @keyframes trRule {
+      from { width: 0; }
+      to   { width: 34px; }
+    }
+
+    /* the about portrait zooms out of a rounded window */
+    .img-about .img {
+      animation: trAboutImg linear both;
+      animation-timeline: --tr-about;
+      animation-range: entry 0% cover 45%;
+    }
+    @keyframes trAboutImg {
+      from { clip-path: inset(18% 18% 18% 18% round 28px); scale: 1.25; }
+      to   { clip-path: inset(0 0 0 0 round 0); scale: 1; }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-card:hover::after { animation: none; }
+}

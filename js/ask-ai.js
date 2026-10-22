@@ -11,7 +11,6 @@
 
   var script   = document.currentScript;
   var STORE    = 'askai-chat-v1';
-  var NUDGE    = 'askai-nudge-seen';
   var MAX_LEN  = 600;
   var GREETING = "Hi! I'm Vivek's AI assistant. Ask me anything about his experience, skills, projects or availability.";
   var SUGGESTIONS = [
@@ -97,12 +96,32 @@
   launcher.className = 'askai-launcher';
   launcher.setAttribute('aria-haspopup', 'dialog');
   launcher.setAttribute('aria-expanded', 'false');
-  launcher.innerHTML = '<span class="askai-launcher-icon"><i class="fas fa-wand-magic-sparkles"></i></span><span class="askai-launcher-text">Ask my AI</span>';
+  launcher.setAttribute('aria-label', "Ask my AI — chat with Vivek's assistant");
+  // a little Vivek: photo head on an SVG hoodie-and-jeans body (limbs animate in ask-ai.css).
+  // The hood collar and waving arm sit in a second layer in front of the head,
+  // so the neck tucks into the hoodie instead of ending in a hard edge.
+  launcher.innerHTML =
+    '<span class="askai-buddy" aria-hidden="true">' +
+      '<svg class="askai-buddy-body" viewBox="0 0 64 64">' +
+        '<g class="b-leg b-leg-1"><rect x="22" y="40" width="9.5" height="19" rx="4" fill="#34416a" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><rect x="19.5" y="56" width="13" height="6" rx="3" fill="#f2f2f2"/></g>' +
+        '<g class="b-leg b-leg-2"><rect x="32.5" y="40" width="9.5" height="19" rx="4" fill="#34416a" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><rect x="31.5" y="56" width="13" height="6" rx="3" fill="#f2f2f2"/></g>' +
+        '<g class="b-arm b-arm-1"><rect x="4" y="8" width="9" height="25" rx="4.5" fill="#1f1b28" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><circle cx="8.5" cy="34" r="4" fill="#c58a62"/></g>' +
+        '<rect x="9" y="9" width="46" height="35" rx="14" fill="#1c1826" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>' +
+        '<path d="M20 31h24v8a3 3 0 0 1-3 3H23a3 3 0 0 1-3-3z" fill="#24202e"/>' +
+      '</svg>' +
+      '<img class="askai-buddy-head" src="images/vivek-head.webp" width="176" height="223" alt="">' +
+      '<svg class="askai-buddy-body askai-buddy-front" viewBox="0 0 64 64">' +
+        '<path d="M11 11C13 5 21 5 24 10C27 14 37 14 40 10C43 5 51 5 53 11C54 17 46 22 32 22C18 22 10 17 11 11Z" fill="#24202e" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>' +
+        '<path d="M28 20v11M36 20v8" stroke="#b3262e" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<g class="b-arm b-arm-2"><rect x="51" y="8" width="9" height="25" rx="4.5" fill="#1f1b28" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><rect x="51.5" y="28" width="8" height="3" rx="1" fill="#050505"/><circle cx="55.5" cy="34" r="4" fill="#c58a62"/></g>' +
+      '</svg>' +
+    '</span>' +
+    '<span class="askai-launcher-text"><i class="fas fa-wand-magic-sparkles"></i> Ask my AI</span>';
 
   var nudge = document.createElement('div');
   nudge.className = 'askai-nudge';
   nudge.innerHTML = '<button type="button" class="askai-nudge-close" aria-label="Dismiss">&times;</button>' +
-    '<strong>Hi there! 👋</strong> Ask my AI anything about my experience, projects or availability.';
+    '<strong>Hi, I\'m Vivek! 👋</strong> Ask my AI anything about my experience, projects or availability.';
 
   var panel = document.createElement('section');
   panel.className = 'askai-panel';
@@ -284,7 +303,6 @@
 
   function hideNudge() {
     nudge.classList.remove('is-visible');
-    try { localStorage.setItem(NUDGE, '1'); } catch (e) {}
   }
 
   launcher.addEventListener('click', open);
@@ -335,16 +353,68 @@
   }
   input.addEventListener('input', autosize);
 
-  /* gentle first-visit nudge */
-  var seen = false;
-  try { seen = !!localStorage.getItem(NUDGE); } catch (e) {}
-  if (!seen) {
-    // wait until the visitor scrolls past the hero so it never covers the intro
-    var onScroll = function () {
-      if (window.scrollY < 500) return;
-      window.removeEventListener('scroll', onScroll);
-      setTimeout(function () { if (panel.hidden) nudge.classList.add('is-visible'); }, 1500);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
+  /* Vivek walks in from the left once the preloader is gone,
+     waves, and says hi in a speech bubble */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function arrive() {
+    launcher.classList.remove('is-walking');
+    launcher.classList.add('is-arrived', 'is-waving');
+    setTimeout(function () { launcher.classList.remove('is-waving'); }, 1900);
+    setTimeout(function () {
+      if (!panel.hidden) return;
+      nudge.classList.add('is-visible');
+      setTimeout(hideNudge, 9000);
+    }, 450);
   }
+
+  function walkIn() {
+    if (reduceMotion) { arrive(); return; }
+    launcher.addEventListener('animationend', function onEnd(e) {
+      if (e.animationName !== 'buddyWalkIn') return;
+      launcher.removeEventListener('animationend', onEnd);
+      arrive();
+    });
+    launcher.classList.add('is-walking');
+  }
+
+  /* his face turns to look at the visitor's pointer, then goes back
+     to looking around on its own after a few still seconds */
+  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+    var buddy = launcher.querySelector('.askai-buddy');
+    var head  = launcher.querySelector('.askai-buddy-head');
+    var lookTimer, lookFrame = 0, pointerX = 0, pointerY = 0;
+    var setLook = function (x, y) {
+      head.style.setProperty('--look-x', x.toFixed(1) + 'deg');
+      head.style.setProperty('--look-y', y.toFixed(1) + 'deg');
+    };
+    document.addEventListener('pointermove', function (e) {
+      if (!launcher.classList.contains('is-arrived')) return;
+      pointerX = e.clientX;
+      pointerY = e.clientY;
+      if (!lookFrame) lookFrame = requestAnimationFrame(function () {
+        lookFrame = 0;
+        var r  = buddy.getBoundingClientRect();   // the body's box, unaffected by the head's own turn
+        var dx = (pointerX - (r.left + r.width * 0.52)) / 420;
+        var dy = (pointerY - (r.top + r.height * 0.27)) / 320;
+        setLook(Math.max(-1, Math.min(1, dx)) * 26, Math.max(-1, Math.min(1, dy)) * -16);
+        launcher.classList.add('is-tracking');
+      });
+      clearTimeout(lookTimer);
+      lookTimer = setTimeout(function () {
+        setLook(0, 0);                           // ease back to centre before the idle look-around resumes
+        lookTimer = setTimeout(function () {
+          launcher.classList.remove('is-tracking');
+          head.style.removeProperty('--look-x');
+          head.style.removeProperty('--look-y');
+        }, 400);
+      }, 3000);
+    }, { passive: true });
+  }
+
+  (function waitForPreloader() {
+    var pre = document.getElementById('ftco-preloader');
+    if (pre && !pre.classList.contains('preloader-hide')) { setTimeout(waitForPreloader, 150); return; }
+    setTimeout(walkIn, 400);
+  })();
 })();
