@@ -97,24 +97,10 @@
   launcher.setAttribute('aria-haspopup', 'dialog');
   launcher.setAttribute('aria-expanded', 'false');
   launcher.setAttribute('aria-label', "Ask my AI — chat with Vivek's assistant");
-  // a little Vivek: photo head on an SVG hoodie-and-jeans body (limbs animate in ask-ai.css).
-  // The hood collar and waving arm sit in a second layer in front of the head,
-  // so the neck tucks into the hoodie instead of ending in a hard edge.
+  // a little Vivek: a cut-out photo; the walk is driven by walkIn() below
   launcher.innerHTML =
     '<span class="askai-buddy" aria-hidden="true">' +
-      '<svg class="askai-buddy-body" viewBox="0 0 64 64">' +
-        '<g class="b-leg b-leg-1"><rect x="22" y="40" width="9.5" height="19" rx="4" fill="#34416a" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><rect x="19.5" y="56" width="13" height="6" rx="3" fill="#f2f2f2"/></g>' +
-        '<g class="b-leg b-leg-2"><rect x="32.5" y="40" width="9.5" height="19" rx="4" fill="#34416a" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><rect x="31.5" y="56" width="13" height="6" rx="3" fill="#f2f2f2"/></g>' +
-        '<g class="b-arm b-arm-1"><rect x="4" y="8" width="9" height="25" rx="4.5" fill="#1f1b28" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><circle cx="8.5" cy="34" r="4" fill="#c58a62"/></g>' +
-        '<rect x="9" y="9" width="46" height="35" rx="14" fill="#1c1826" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>' +
-        '<path d="M20 31h24v8a3 3 0 0 1-3 3H23a3 3 0 0 1-3-3z" fill="#24202e"/>' +
-      '</svg>' +
-      '<img class="askai-buddy-head" src="images/vivek-head.webp" width="176" height="223" alt="">' +
-      '<svg class="askai-buddy-body askai-buddy-front" viewBox="0 0 64 64">' +
-        '<path d="M11 11C13 5 21 5 24 10C27 14 37 14 40 10C43 5 51 5 53 11C54 17 46 22 32 22C18 22 10 17 11 11Z" fill="#24202e" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>' +
-        '<path d="M28 20v11M36 20v8" stroke="#b3262e" stroke-width="1.6" stroke-linecap="round"/>' +
-        '<g class="b-arm b-arm-2"><rect x="51" y="8" width="9" height="25" rx="4.5" fill="#1f1b28" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><rect x="51.5" y="28" width="8" height="3" rx="1" fill="#050505"/><circle cx="55.5" cy="34" r="4" fill="#c58a62"/></g>' +
-      '</svg>' +
+      '<span class="askai-buddy-frame"><span class="askai-pose"></span><span class="askai-pose"></span></span>' +
     '</span>' +
     '<span class="askai-launcher-text"><i class="fas fa-wand-magic-sparkles"></i> Ask my AI</span>';
 
@@ -354,62 +340,72 @@
   input.addEventListener('input', autosize);
 
   /* Vivek walks in from the left once the preloader is gone,
-     waves, and says hi in a speech bubble */
+     turns to face you, and says hi in a speech bubble */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var frame = launcher.querySelector('.askai-buddy-frame');
+  var poses = launcher.querySelectorAll('.askai-pose');
+
+  // poses in images/vivek-walk.webp
+  var FRONT = 0, THREE_Q = 1, PROFILE = 2, PROFILE_STRIDE = 3, THREE_Q_STRIDE = 4;
+  var WALK_FROM = -144;   // px, matches the off-screen translate in ask-ai.css
+  var WALK_MS   = 2100;
+  var STRIDE    = 48;     // px covered per step, so his feet keep pace with the ground
+
+  function setPose(a, b, mix) {
+    poses[0].style.backgroundPositionX = a * 25 + '%';
+    poses[1].style.backgroundPositionX = b * 25 + '%';
+    poses[1].style.opacity = mix;
+  }
+
+  // walks in side-on, then turns toward the visitor over his last two steps
+  function poseForStep(i, steps) {
+    var left = steps - i;
+    if (left <= 1) return THREE_Q;
+    if (left === 2) return THREE_Q_STRIDE;
+    return i % 2 ? PROFILE : PROFILE_STRIDE;
+  }
 
   function arrive() {
     launcher.classList.remove('is-walking');
+    launcher.style.removeProperty('translate');
+    frame.style.removeProperty('transform');
     launcher.classList.add('is-arrived', 'is-waving');
+    // crossfade from his last step into the standing pose
+    poses[1].style.backgroundPositionX = FRONT * 25 + '%';
+    poses[1].style.transition = 'opacity 0.35s ease';
+    poses[1].style.opacity = 1;
+    setTimeout(function () {
+      poses[1].style.transition = '';
+      setPose(FRONT, FRONT, 0);
+    }, 400);
     setTimeout(function () { launcher.classList.remove('is-waving'); }, 1900);
     setTimeout(function () {
       if (!panel.hidden) return;
       nudge.classList.add('is-visible');
       setTimeout(hideNudge, 9000);
-    }, 450);
+    }, 650);
   }
 
   function walkIn() {
-    if (reduceMotion) { arrive(); return; }
-    launcher.addEventListener('animationend', function onEnd(e) {
-      if (e.animationName !== 'buddyWalkIn') return;
-      launcher.removeEventListener('animationend', onEnd);
-      arrive();
-    });
+    if (reduceMotion) { setPose(FRONT, FRONT, 0); arrive(); return; }
+    var steps = Math.ceil(-WALK_FROM / STRIDE);
+    var start = performance.now();
     launcher.classList.add('is-walking');
-  }
-
-  /* his face turns to look at the visitor's pointer, then goes back
-     to looking around on its own after a few still seconds */
-  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
-    var buddy = launcher.querySelector('.askai-buddy');
-    var head  = launcher.querySelector('.askai-buddy-head');
-    var lookTimer, lookFrame = 0, pointerX = 0, pointerY = 0;
-    var setLook = function (x, y) {
-      head.style.setProperty('--look-x', x.toFixed(1) + 'deg');
-      head.style.setProperty('--look-y', y.toFixed(1) + 'deg');
-    };
-    document.addEventListener('pointermove', function (e) {
-      if (!launcher.classList.contains('is-arrived')) return;
-      pointerX = e.clientX;
-      pointerY = e.clientY;
-      if (!lookFrame) lookFrame = requestAnimationFrame(function () {
-        lookFrame = 0;
-        var r  = buddy.getBoundingClientRect();   // the body's box, unaffected by the head's own turn
-        var dx = (pointerX - (r.left + r.width * 0.52)) / 420;
-        var dy = (pointerY - (r.top + r.height * 0.27)) / 320;
-        setLook(Math.max(-1, Math.min(1, dx)) * 26, Math.max(-1, Math.min(1, dy)) * -16);
-        launcher.classList.add('is-tracking');
-      });
-      clearTimeout(lookTimer);
-      lookTimer = setTimeout(function () {
-        setLook(0, 0);                           // ease back to centre before the idle look-around resumes
-        lookTimer = setTimeout(function () {
-          launcher.classList.remove('is-tracking');
-          head.style.removeProperty('--look-x');
-          head.style.removeProperty('--look-y');
-        }, 400);
-      }, 3000);
-    }, { passive: true });
+    (function tick(now) {
+      var t = Math.min(1, (now - start) / WALK_MS);
+      // steady stroll that slows into the stop
+      var e = 0.55 * t + 0.45 * (1 - (1 - t) * (1 - t));
+      var p = (-WALK_FROM * e) / STRIDE;
+      var i = Math.floor(p), f = p - i;
+      // hold each pose, then blend into the next just before the foot lands
+      var mix = Math.max(0, Math.min(1, (f - 0.75) / 0.25));
+      setPose(poseForStep(i, steps), poseForStep(Math.min(i + 1, steps - 1), steps), mix * mix * (3 - 2 * mix));
+      launcher.style.translate = (WALK_FROM * (1 - e)).toFixed(1) + 'px 0';
+      // rises over the planted leg and dips as the next foot lands, leaning slightly into the walk
+      frame.style.transform = 'translateY(' + (-3.5 * Math.sin(Math.PI * f)).toFixed(2) + 'px) rotate(' + (0.6 + 0.6 * Math.sin(Math.PI * f)).toFixed(2) + 'deg)';
+      if (t < 1) requestAnimationFrame(tick); else arrive();
+    })(start);
   }
 
   (function waitForPreloader() {
